@@ -44,7 +44,7 @@ const ContactSection = ({ sectionRef }: ContactSectionProps) => {
           <motion.a
             whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.98 }}
-            href="mailto:hello@example.com" // Ganti dengan email anda
+            href="mailto:rizkybudiarto890@gmail.com" // Ganti dengan email anda
             className="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-xl shadow-lg hover:shadow-blue-500/20 transition-all inline-flex items-center justify-center"
           >
             <Mail className="mr-2" size={20} />
