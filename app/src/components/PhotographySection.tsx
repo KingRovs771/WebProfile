@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Camera } from 'lucide-react';
 import { PHOTOGRAPHY_DATA } from '../library/data';
 
-const PhotographySection = ({ sectionRef, onSelectProject }) => {
+const PhotographySection = ({ sectionRef, onSelectProject }: any) => {
   return (
     <section id="photography" ref={sectionRef} className="py-24 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

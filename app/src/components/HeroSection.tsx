@@ -1,8 +1,14 @@
 'use client';
 import { motion } from 'framer-motion';
 import { Code, Camera, ChevronDown } from 'lucide-react';
-
-const HeroSection = ({ scrollToRef, refs }) => {
+interface HeroSectionProps {
+  scrollToRef: (ref: React.RefObject<HTMLElement | null>) => void;
+  refs: {
+    projectsRef: React.RefObject<HTMLElement | null>;
+    contactRef: React.RefObject<HTMLElement | null>;
+  };
+}
+const HeroSection = ({ scrollToRef, refs }: HeroSectionProps) => {
   return (
     <section id="home" className="pt-20 lg:pt-0 min-h-screen flex items-center relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full">
