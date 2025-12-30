@@ -2,7 +2,11 @@
 import { motion } from 'framer-motion';
 import { Mail, Instagram, Linkedin, Github } from 'lucide-react';
 
-const ContactSection = ({ sectionRef }) => {
+interface ContactSectionProps {
+  sectionRef: React.RefObject<HTMLElement | null>;
+}
+
+const ContactSection = ({ sectionRef }: ContactSectionProps) => {
   return (
     <section id="contact" ref={sectionRef} className="py-24 relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

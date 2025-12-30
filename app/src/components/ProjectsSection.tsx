@@ -3,7 +3,11 @@ import { motion } from 'framer-motion';
 import { Github, ExternalLink, User, Layers } from 'lucide-react';
 import { APPS_DATA } from '../library/data';
 
-const ProjectsSection = ({ sectionRef }) => {
+interface ProjectSectionProps {
+  sectionRef: React.RefObject<HTMLElement | null>;
+}
+
+const ProjectsSection = ({ sectionRef }: ProjectSectionProps) => {
   return (
     <section id="projects" ref={sectionRef} className="py-24 bg-slate-950/50 border-y border-slate-800/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

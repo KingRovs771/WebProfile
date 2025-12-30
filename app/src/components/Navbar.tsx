@@ -3,13 +3,23 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
-const Navbar = ({ activeSection, scrollToSection, refs }) => {
+interface NavbarProps {
+  activeSection: string;
+  scrollToSection: (ref: React.RefObject<HTMLElement | null>) => void;
+  refs: {
+    photographyRef: React.RefObject<HTMLElement | null>;
+    projectsRef: React.RefObject<HTMLElement | null>;
+    contactRef: React.RefObject<HTMLElement | null>;
+  };
+}
+
+const Navbar = ({ activeSection, scrollToSection, refs }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Pastikan refs ada sebelum di-destructure untuk menghindari error
   const { photographyRef, projectsRef, contactRef } = refs || {};
 
-  const handleScroll = (ref) => {
+  const handleScroll = (ref: React.RefObject<HTMLElement | null> | null) => {
     if (!ref) {
       // Khusus untuk 'Home' (ref null), scroll ke paling atas window
       window.scrollTo({ top: 0, behavior: 'smooth' });
