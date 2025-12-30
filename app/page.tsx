@@ -14,9 +14,9 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState('home');
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const photographyRef = useRef(null);
-  const projectsRef = useRef(null);
-  const contactRef = useRef(null);
+  const photographyRef = useRef<HTMLElement>(null);
+  const projectsRef = useRef<HTMLElement>(null);
+  const contactRef = useRef<HTMLElement>(null);
 
   // Scroll spy
   useEffect(() => {
@@ -38,8 +38,8 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (ref) => {
-    ref?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const scrollToSection = (ref: React.RefObject<HTMLElement>) => {
+    ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
