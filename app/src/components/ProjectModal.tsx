@@ -2,7 +2,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Camera } from 'lucide-react';
 
-const ProjectModal = ({ project, onClose }) => {
+const ProjectModal = ({ project, onClose }: any) => {
   if (!project) return null;
 
   return (
