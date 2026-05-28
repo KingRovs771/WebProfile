@@ -42,22 +42,60 @@ const ProjectsSection = ({ sectionRef }: ProjectSectionProps) => {
                 <div className="flex justify-between items-start mb-1">
                   <h3 className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">{app.title}</h3>
                   <div className="flex space-x-2">
-                    <a
-                      href={app.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-all"
-                    >
-                      <Github size={16} />
-                    </a>
-                    <a
-                      href={app.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:bg-slate-700 transition-all"
-                    >
-                      <ExternalLink size={16} />
-                    </a>
+                    {app.github && (
+                      <a
+                        href={app.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-all relative group"
+                      >
+                        <Github size={16} />
+                        {/* @ts-ignore */}
+                        {app.github2 && (
+                          <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 hidden group-hover:block bg-slate-950/95 border border-slate-800 text-slate-200 text-2xs font-semibold px-2.5 py-1 rounded-md shadow-xl whitespace-nowrap z-30 transition-all duration-200">
+                            Backend Repo
+                          </span>
+                        )}
+                      </a>
+                    )}
+                    {/* @ts-ignore */}
+                    {app.github2 && (
+                      <a
+                        href={app.github2}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-all relative group"
+                      >
+                        <Github size={16} />
+                        <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 hidden group-hover:block bg-slate-950/95 border border-slate-800 text-slate-200 text-2xs font-semibold px-2.5 py-1 rounded-md shadow-xl whitespace-nowrap z-30 transition-all duration-200">
+                          Frontend Repo
+                        </span>
+                      </a>
+                    )}
+                    {/* @ts-ignore */}
+                    {app.github3 && (
+                      <a
+                        href={app.github3}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-all relative group"
+                      >
+                        <Github size={16} />
+                        <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 hidden group-hover:block bg-slate-950/95 border border-slate-800 text-slate-200 text-2xs font-semibold px-2.5 py-1 rounded-md shadow-xl whitespace-nowrap z-30 transition-all duration-200">
+                          Mobile Repo
+                        </span>
+                      </a>
+                    )}
+                    {app.live && app.live !== '#' && (
+                      <a
+                        href={app.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:bg-slate-700 transition-all"
+                      >
+                        <ExternalLink size={16} />
+                      </a>
+                    )}
                   </div>
                 </div>
 

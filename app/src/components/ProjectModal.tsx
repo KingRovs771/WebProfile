@@ -30,14 +30,18 @@ const ProjectModal = ({ project, onClose }: any) => {
               <Camera size={16} className="mr-2" />
               {project.category}
             </p>
-            <p className="text-slate-300 leading-relaxed">A visual narrative captured during golden hour in Jakarta's central business district. This image explores the contrast between modern architecture and human presence.</p>
-            <div className="mt-6 pt-6 border-t border-slate-800/50">
-              <div className="flex flex-wrap gap-3">
-                <span className="px-4 py-2 bg-slate-800/50 text-blue-300 rounded-lg text-sm border border-slate-700/50">Canon EOS R6</span>
-                <span className="px-4 py-2 bg-slate-800/50 text-blue-300 rounded-lg text-sm border border-slate-700/50">24-70mm f/2.8</span>
-                <span className="px-4 py-2 bg-slate-800/50 text-blue-300 rounded-lg text-sm border border-slate-700/50">ISO 100</span>
+            <p className="text-slate-300 leading-relaxed">
+              {project.description || "A visual narrative captured with high precision, exploring unique perspectives and fine details."}
+            </p>
+            {(project.camera || project.lens || project.iso) && (
+              <div className="mt-6 pt-6 border-t border-slate-800/50">
+                <div className="flex flex-wrap gap-3">
+                  {project.camera && <span className="px-4 py-2 bg-slate-800/50 text-blue-300 rounded-lg text-sm border border-slate-700/50">{project.camera}</span>}
+                  {project.lens && <span className="px-4 py-2 bg-slate-800/50 text-blue-300 rounded-lg text-sm border border-slate-700/50">{project.lens}</span>}
+                  {project.iso && <span className="px-4 py-2 bg-slate-800/50 text-blue-300 rounded-lg text-sm border border-slate-700/50">{project.iso}</span>}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </motion.div>
       </motion.div>

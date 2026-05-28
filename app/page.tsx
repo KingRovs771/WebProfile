@@ -21,14 +21,14 @@ export default function Home() {
   // Scroll spy
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY + 100;
+      const scrollY = window.scrollY + 120;
 
-      if (photographyRef.current && scrollY >= photographyRef.current.offsetTop - 100) {
-        setActiveSection('photography');
-      } else if (projectsRef.current && scrollY >= projectsRef.current.offsetTop - 100) {
-        setActiveSection('projects');
-      } else if (contactRef.current && scrollY >= contactRef.current.offsetTop - 100) {
+      if (contactRef.current && scrollY >= contactRef.current.offsetTop) {
         setActiveSection('contact');
+      } else if (projectsRef.current && scrollY >= projectsRef.current.offsetTop) {
+        setActiveSection('projects');
+      } else if (photographyRef.current && scrollY >= photographyRef.current.offsetTop) {
+        setActiveSection('photography');
       } else {
         setActiveSection('home');
       }
