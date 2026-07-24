@@ -53,7 +53,8 @@ const ProjectsSection = ({ sectionRef }: ProjectSectionProps) => {
                         {/* @ts-ignore */}
                         {app.github2 && (
                           <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 hidden group-hover:block bg-slate-950/95 border border-slate-800 text-slate-200 text-2xs font-semibold px-2.5 py-1 rounded-md shadow-xl whitespace-nowrap z-30 transition-all duration-200">
-                            Backend Repo
+                            {/* @ts-ignore */}
+                            {app.githubLabel || 'Backend Repo'}
                           </span>
                         )}
                       </a>
@@ -68,7 +69,8 @@ const ProjectsSection = ({ sectionRef }: ProjectSectionProps) => {
                       >
                         <Github size={16} />
                         <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 hidden group-hover:block bg-slate-950/95 border border-slate-800 text-slate-200 text-2xs font-semibold px-2.5 py-1 rounded-md shadow-xl whitespace-nowrap z-30 transition-all duration-200">
-                          Frontend Repo
+                          {/* @ts-ignore */}
+                          {app.github2Label || 'Frontend Repo'}
                         </span>
                       </a>
                     )}
@@ -82,7 +84,8 @@ const ProjectsSection = ({ sectionRef }: ProjectSectionProps) => {
                       >
                         <Github size={16} />
                         <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 hidden group-hover:block bg-slate-950/95 border border-slate-800 text-slate-200 text-2xs font-semibold px-2.5 py-1 rounded-md shadow-xl whitespace-nowrap z-30 transition-all duration-200">
-                          Mobile Repo
+                          {/* @ts-ignore */}
+                          {app.github3Label || 'Mobile Repo'}
                         </span>
                       </a>
                     )}
