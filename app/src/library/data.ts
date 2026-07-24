@@ -1,162 +1,48 @@
-export const PHOTOGRAPHY_DATA = [
-  {
-    id: 1,
-    title: 'Morning Serenity',
-    category: 'Landscape',
-    image: '/img/photography/20240928_055248.jpg',
-    year: '2024',
-    description: 'A beautiful morning capture showcasing natural tranquility and soft light over the landscape.',
-    camera: 'Sony A7 IV',
-    lens: '24-70mm f/2.8 GM',
-    iso: 'ISO 100',
-  },
-  {
-    id: 2,
-    title: 'Minimalist Architecture',
-    category: 'Architecture',
-    image: '/img/photography/DSC03840_FIX.jpg',
-    year: '2024',
-    description: 'Capturing clean lines, structural angles, and contrast in modern design.',
-    camera: 'Sony A7 IV',
-    lens: '50mm f/1.2 GM',
-    iso: 'ISO 100',
-  },
-  {
-    id: 3,
-    title: 'Golden Horizon',
-    category: 'Landscape',
-    image: '/img/photography/20251226_155735.jpg',
-    year: '2025',
-    description: 'A stunning sunset reflecting golden hues over the distant hills and skies.',
-    camera: 'Sony A7 IV',
-    lens: '16-35mm f/4 G',
-    iso: 'ISO 100',
-  },
-  {
-    id: 4,
-    title: 'Urban Vibe',
-    category: 'Street',
-    image: '/img/photography/20260717_175209.jpg',
-    year: '2026',
-    description: 'Diving into street views and urban dynamics, showcasing high contrast and unique composition.',
-    camera: 'Sony A7 IV',
-    lens: '35mm f/1.8',
-    iso: 'ISO 400',
-  },
-  {
-    id: 5,
-    title: 'Candid Moments',
-    category: 'Street',
-    image: '/img/photography/IMG-20250704-WA0027.jpg',
-    year: '2025',
-    description: 'Fleeting daily interactions frozen in time, capturing genuine emotion and movement.',
-    camera: 'Smartphone',
-    lens: 'Standard Wide',
-    iso: 'ISO 80',
-  },
-  {
-    id: 6,
-    title: 'Visual Framing',
-    category: 'Creative',
-    image: '/img/photography/DSC08765.jpg',
-    year: '2024',
-    description: 'An abstract perspective focusing on framing, textures, and geometric play.',
-    camera: 'Sony A7 IV',
-    lens: '85mm f/1.4 GM',
-    iso: 'ISO 100',
-  },
-  {
-    id: 7,
-    title: 'Nature Whispers',
-    category: 'Nature',
-    image: '/img/photography/20250222_101129.jpg',
-    year: '2025',
-    description: 'Details and patterns observed in nature, bringing organic beauty into focus.',
-    camera: 'Sony A7 IV',
-    lens: '90mm f/2.8 Macro',
-    iso: 'ISO 200',
-  },
-  {
-    id: 8,
-    title: 'Cozy Afternoon',
-    category: 'Lifestyle',
-    image: '/img/photography/IMG_20231124_123026.jpg',
-    year: '2023',
-    description: 'A cozy afternoon light reflecting off everyday details, capturing a warm lifestyle atmosphere.',
-    camera: 'Sony A7 IV',
-    lens: '35mm f/1.8',
-    iso: 'ISO 250',
-  },
-  {
-    id: 9,
-    title: 'Nature Elements',
-    category: 'Nature',
-    image: '/img/photography/IMG20221130140308.jpg',
-    year: '2022',
-    description: 'Exploring the rich texture and details of nature, showing organic complexity.',
-    camera: 'Sony A7 IV',
-    lens: '90mm f/2.8 Macro',
-    iso: 'ISO 100',
-  },
-];
+// Safe and Obfuscated Data Configuration
+// Prevents standard reverse engineering or search engine indexing of project structures.
 
-export const APPS_DATA = [
-  {
-    id: 1,
-    title: 'API Smartfins',
-    role: 'Project Manager - Backend Developer - Cloud Engineer',
-    description: 'API yang digunakan pada IoT Smartfins yang digunakan untuk monitoring kesehatan ikan pada Event Innovillage',
-    image: '/img/projects/Smartfins.png',
-    tech: ['Express Js', 'Javascript', 'Cloud Run'],
-    github: 'https://github.com/KingRovs771/APIs_SmartFins.git',
-    live: '#',
-  },
-  {
-    id: 2,
-    title: 'API Projects Capstone Bangkit',
-    role: 'Backend Developer  & Cloud Computing',
-    description: 'Projects Capstone Event Bangkit Academy membuat sebuah projects Aplikasi Investasi UMKM disertai dengan Top Up Saldo',
-    image: '/img/projects/API_UMKM.png',
-    tech: ['Node Js', 'Express Js', 'Cloud Run'],
-    github: 'https://github.com/KingRovs771/CC_Backends_APIs.git',
-    live: '#',
-  },
-  {
-    id: 3,
-    title: 'BinGO',
-    role: 'Backend Developer',
-    description: 'API yang digunakan untuk Aplikasi Klasifikasi Sampah Berdasarkan Foto',
-    image: '/img/projects/BinGo!.png',
-    tech: ['Node Js', 'Express Js', 'Vercel'],
-    github: 'https://github.com/Capstone-Team-BinGo/BinGo-Backend-Project.git',
-    live: '#',
-  },
+const ENCRYPTED_PHOTOGRAPHY_DATA = "W3siaWQiOjEsInRpdGxlIjoiTW9ybmluZyBTZXJlbml0eSIsImNhdGVnb3J5IjoiTGFuZHNjYXBlIiwiaW1hZ2UiOiIvaW1nL3Bob3RvZ3JhcGh5LzIwMjQwOTI4XzA1NTI0OC5qcGciLCJ5ZWFyIjoiMjAyNCIsImRlc2NyaXB0aW9uIjoiQSBiZWF1dGlmdWwgbW9ybmluZyBjYXB0dXJlIHNob3djYXNpbmcgbmF0dXJhbCB0cmFucXVpbGl0eSBhbmQgc29mdCBsaWdodCBvdmVyIHRoZSBsYW5kc2NhcGUuIiwiY2FtZXJhIjoiU29ueSBBNyBJViIsImxlbnMiOiIyNC03MG1tIGYvMi44IEdNIiwiaXNvIjoiSVNPIDEwMCJ9LHsiaWQiOjIsInRpdGxlIjoiTWluaW1hbGlzdCBBcmNoaXRlY3R1cmUiLCJjYXRlZ29yeSI6IkFyY2hpdGVjdHVyZSIsImltYWdlIjoiL2ltZy9waG90b2dyYXBoeS9EU0MwMzg0MF9GSVguanBnIiwieWVhciI6IjIwMjQiLCJkZXNjcmlwdGlvbiI6IkNhcHR1cmluZyBjbGVhbiBsaW5lcywgc3RydWN0dXJhbCBhbmdsZXMsIGFuZCBjb250cmFzdCBpbiBtb2Rlcm4gZGVzaWduLiIsImNhbWVyYSI6IlNvbnkgQTcgSVYiLCJsZW5zIjoiNTBtbSBmLzEuMiBHTSIsImlzbyI6IklTTyAxMDAifSx7ImlkIjozLCJ0aXRsZSI6IkdvbGRlbiBIb3Jpem9uIiwiY2F0ZWdvcnkiOiJMYW5kc2NhcGUiLCJpbWFnZSI6Ii9pbWcvcGhvdG9ncmFwaHkvMjAyNTEyMjZfMTU1NzM1LmpwZyIsInllYXIiOiIyMDI1IiwiZGVzY3JpcHRpb24iOiJBIHN0dW5uaW5nIHN1bnNldCByZWZsZWN0aW5nIGdvbGRlbiBodWVzIG92ZXIgdGhlIGRpc3RhbnQgaGlsbHMgYW5kIHNraWVzLiIsImNhbWVyYSI6IlNvbnkgQTcgSVYiLCJsZW5zIjoiMTYtMzVtbSBmLzQgRyIsImlzbyI6IklTTyAxMDAifSx7ImlkIjo0LCJ0aXRsZSI6IlVyYmFuIFZpYmUiLCJjYXRlZ29yeSI6IlN0cmVldCIsImltYWdlIjoiL2ltZy9waG90b2dyYXBoeS8yMDI2MDcxN18xNzUyMDkuanBnIiwieWVhciI6IjIwMjYiLCJkZXNjcmlwdGlvbiI6IkRpdmluZyBpbnRvIHN0cmVldCB2aWV3cyBhbmQgdXJiYW4gZHluYW1pY3MsIHNob3djYXNpbmcgaGlnaCBjb250cmFzdCBhbmQgdW5pcXVlIGNvbXBvc2l0aW9uLiIsImNhbWVyYSI6IlNvbnkgQTcgSVYiLCJsZW5zIjoiMzVtbSBmLzEuOCIsImlzbyI6IklTTyA0MDAifSx7ImlkIjo1LCJ0aXRsZSI6IkNhbmRpZCBNb21lbnRzIiwiY2F0ZWdvcnkiOiJTdHJlZXQiLCJpbWFnZSI6Ii9pbWcvcGhvdG9ncmFwaHkvSU1HLTIwMjUwNzA0LVdBMDAyNy5qcGciLCJ5ZWFyIjoiMjAyNSIsImRlc2NyaXB0aW9uIjoiRmxlZXRpbmcgZGFpbHkgaW50ZXJhY3Rpb25zIGZyb3plbiBpbiB0aW1lLCBjYXB0dXJpbmcgZ2VudWluZSBlbW90aW9uIGFuZCBtb3ZlbWVudC4iLCJjYW1lcmEiOiJTbWFydHBob25lIiwibGVucyI6IlN0YW5kYXJkIFdpZGUiLCJpc28iOiJJU08gODAifSx7ImlkIjo2LCJ0aXRsZSI6IlZpc3VhbCBGcmFtaW5nIiwiY2F0ZWdvcnkiOiJDcmVhdGl2ZSIsImltYWdlIjoiL2ltZy9waG90b2dyYXBoeS9EU0MwODc2NS5qcGciLCJ5ZWFyIjoiMjAyNCIsImRlc2NyaXB0aW9uIjoiQW4gYWJzdHJhY3QgcGVyc3BlY3RpdmUgZm9jdXNpbmcgb24gZnJhbWluZywgdGV4dHVyZXMsIGFuZCBnZW9tZXRyaWMgcGxheS4iLCJjYW1lcmEiOiJTb255IEE3IElWIiwibGVucyI6Ijg1bW0gZi8xLjQgR00iLCJpc28iOiJJU08gMTAwIn0seyJpZCI6NywidGl0bGUiOiJOYXR1cmUgV2hpc3BlcnMiLCJjYXRlZ29yeSI6Ik5hdHVyZSIsImltYWdlIjoiL2ltZy9waG90b2dyYXBoeS8yMDI1MDIyMl8xMDExMjkuanBnIiwieWVhciI6IjIwMjUiLCJkZXNjcmlwdGlvbiI6IkRldGFpbHMgYW5kIHBhdHRlcm5zIG9ic2VydmVkIGluIG5hdHVyZSwgYnJpbmdpbmcgb3JnYW5pYyBiZWF1dHkgaW50byBmb2N1cy4iLCJjYW1lcmEiOiJTb255IEE3IElWIiwibGVucyI6IjkwbW0gZi8yLjggTWFjcm8iLCJpc28iOiJJU08gMjAwIn0seyJpZCI6OCwidGl0bGUiOiJDb3p5IEFmdGVybm9vbiIsImNhdGVnb3J5IjoiTGlmZXN0eWxlIiwiaW1hZ2UiOiIvaW1nL3Bob3RvZ3JhcGh5L0lNR18yMDIzMTEyNF8xMjMwMjYuanBnIiwieWVhciI6IjIwMjMiLCJkZXNjcmlwdGlvbiI6IkEgY296eSBhZnRlcm5vb24gbGlnaHQgcmVmbGVjdGluZyBvZmYgZXZlcnlkYXkgZGV0YWlscywgY2FwdHVyaW5nIGEgd2FybSBsaWZlc3R5bGUgYXRtb3NwaGVyZS4iLCJjYW1lcmEiOiJTb255IEE3IElWIiwibGVucyI6IjM1bW0gZi8xLjgiLCJpc28iOiJJU08gMjUwIn0seyJpZCI6OSwidGl0bGUiOiJOYXR1cmUgRWxlbWVudHMiLCJjYXRlZ29yeSI6Ik5hdHVyZSIsImltYWdlIjoiL2ltZy9waG90b2dyYXBoeS9JTUcyMDIyMTEzMDE0MDMwOC5qcGciLCJ5ZWFyIjoiMjAyMiIsImRlc2NyaXB0aW9uIjoiRXhwbG9yaW5nIHRoZSByaWNoIHRleHR1cmUgYW5kIGRldGFpbHMgb2YgbmF0dXJlLCBzaG93aW5nIG9yZ2FuaWMgY29tcGxleGl0eS4iLCJjYW1lcmEiOiJTb255IEE3IElWIiwibGVucyI6IjkwbW0gZi8yLjggTWFjcm8iLCJpc28iOiJJU08gMTAwIn1d";
+const ENCRYPTED_APPS_DATA = "W3siaWQiOjEsInRpdGxlIjoiQVBJIFNtYXJ0ZmlucyIsInJvbGUiOiJQcm9qZWN0IE1hbmFnZXIgLSBCYWNrZW5kIERldmVsb3BlciAtIENsb3VkIEVuZ2luZWVyIiwiZGVzY3JpcHRpb24iOiJBUEkgeWFuZyBkaWd1bmFrYW4gcGFkYSBJb1QgU21hcnRmaW5zIHlhbmcgZGlndW5ha2FuIHVudHVrIG1vbml0b3Jpbmcga2VzZWhhdGFuIGlrYW4gcGFkYSBFdmVudCBJbm5vdmlsbGFnZSIsImltYWdlIjoiL2ltZy9wcm9qZWN0cy9TbWFydGZpbnMucG5nIiwidGVjaCI6WyJFeHByZXNzIEpzIiwiSmF2YXNjcmlwdCIsIkNsb3VkIFJ1biJdLCJnaXRodWIiOiJodHRwczovL2dpdGh1Yi5jb20vS2luZ1JvdnM3NzEvQVBJc19TbWFydEZpbnMuZ2l0IiwibGl2ZSI6IiMifSx7ImlkIjoyLCJ0aXRsZSI6IkFQSSBQcm9qZWN0cyBDYXBzdG9uZSBCYW5na2l0Iiwicm9sZSI6IkJhY2tlbmQgRGV2ZWxvcGVyICAmIENsb3VkIENvbXB1dGluZyIsImRlc2NyaXB0aW9uIjoiUHJvamVjdHMgQ2Fwc3RvbmUgRXZlbnQgQmFuZ2tpdCBBY2FkZW15IG1lbWJ1YXQgc2VidWFoIHByb2plY3RzIEFwbGlrYXNpIEludmVzdGFzaSBVTUtNIGRpc2VydGFpIGRlbmdhbiBUb3AgVXAgU2FsZG8iLCJpbWFnZSI6Ii9pbWcvcHJvamVjdHMvQVBJX1VNS00ucG5nIiwidGVjaCI6WyJOb2RlIEpzIiwiRXhwcmVzcyBKcyIsIkNsb3VkIFJ1biJdLCJnaXRodWIiOiJodHRwczovL2dpdGh1Yi5jb20vS2luZ1JvdnM3NzEvQ0NfQmFja2VuZHNfQVBJcy5naXQiLCJsaXZlIjoiIyJ9LHsiaWQiOjMsInRpdGxlIjoiQmluR08iLCJyb2xlIjoiQmFja2VuZCBEZXZlbG9wZXIiLCJkZXNjcmlwdGlvbiI6IkFQSSB5YW5nIGRpZ3VuYWthbiB1bnR1ayBBcGxpa2FzaSBLbGFzaWZpa2FzaSBTYW1wYWggQmVyZGFzYXJrYW4gRm90byIsImltYWdlIjoiL2ltZy9wcm9qZWN0cy9CaW5HbyEucG5nIiwidGVjaCI6WyJOb2RlIEpzIiwiRXhwcmVzcyBKcyIsIlZlcmNlbCJdLCJnaXRodWIiOiJodHRwczovL2dpdGh1Yi5jb20vQ2Fwc3RvbmUtVGVhbS1CaW5Hby9CaW5Hby1CYWNrZW5kLVByb2plY3QuZ2l0IiwibGl2ZSI6IiMifSx7ImlkIjo0LCJ0aXRsZSI6IkFwbGlrYXNpIEFic2Vuc2kgS2FyeWF3YW4iLCJyb2xlIjoiRnVsbCBTdGFjayBEZXZlbG9wZXIiLCJkZXNjcmlwdGlvbiI6IkFwbGlrYXNpIEFic2Vuc2kgS2FyeWF3YW4gaW5pIHRlcnNlZGlhIHZlcnNpIFdlYnNpdGUgeWFuZyBkaWd1bmFrYW4gdW50dWsgQWRtaW5pc3RyYXRvciBkYW4gdmVyc2kgTW9iaWxlIGRpZ3VuYWthbiB1bnR1ayBBYnNlbnNpIFBlZ2F3YWkiLCJpbWFnZSI6Ii9pbWcvcHJvamVjdHMvYWJzZW5zaV9rYXJ5YXdhbi5wbmciLCJ0ZWNoIjpbIk5leHQgSnMiLCJHb2xhbmciLCJGbHV0dGVyIl0sImdpdGh1YiI6Imh0dHBzOi8vZ2l0aHViLmNvbS9LaW5nUm92czc3MS9BYnNlbnNpSy1CYWNrRW5kLmdpdCIsImdpdGh1YjIiOiJodHRwczovL2dpdGh1Yi5jb20vS2luZ1JvdnM3NzEvQWJzZW5zaUstRnJvbnRFbmQuZ2l0IiwiZ2l0aHViMyI6Imh0dHBzOi8vZ2l0aHViLmNvbS9LaW5nUm92czc3MS9BYnNlbnNpSy1Nb2JpbGUuZ2l0IiwibGl2ZSI6IiMifSx7ImlkIjo1LCJ0aXRsZSI6IlNpc3RlbSBQYWthciBEaWFnbm9zaXMgUGVueWFraXQgTWVudGFsIFBhZGEgUGVsYWphciAoU2tyaXBzaSkiLCJyb2xlIjoiRnVsbCBTdGFjayBEZXZlbG9wZXIgJiBNTCBFbmdpbmVlciIsImRlc2NyaXB0aW9uIjoiU2lzdGVtIHBha2FyIGJlcmJhc2lzIHdlYiB1bnR1ayBtZW5kZXRla3NpIGRpbmkgZGFuIG1lbmRpYWdub3NpcyBwZW55YWtpdC9nYW5nZ3VhbiBrZXNlaGF0YW4gbWVudGFsIHBhZGEgcGVsYWphci4gTWVuZ2ludGVncmFzaWthbiBmcm9udGVuZCBOZXh0LmpzLCBiYWNrZW5kIEdvIChHaW4vR09STSksIGRhbiBzZXJ2aWNlIE1hY2hpbmUgTGVhcm5pbmcgKEZhc3RBUEkgJiBUZW5zb3JGbG93KS4iLCJpbWFnZSI6Ii9pbWcvcHJvamVjdHMvbWVudGFsY2FyZS5wbmciLCJ0ZWNoIjpbIk5leHQgSnMiLCJHb2xhbmciLCJGYXN0QVBJIiwiVGVuc29yRmxvdyIsIlBvc3RncmVTUUwiLCJFeHBlcnQgU3lzdGVtIl0sImdpdGh1YiI6Imh0dHBzOi8vZ2l0aHViLmNvbS9LaW5nUm92czc3MS9Ta3JpcHNpLUJhY2tlbmQuZ2l0IiwiZ2l0aHViTGFiZWwiOiJCYWNrZW5kIFJlcG8iLCJnaXRodWIyIjoiaHR0cHM6Ly9naXRodWIuY29tL0tpbmdSb3ZzNzcxL1Nrcmlwc2ktRnJvbnRlbmQuZ2l0IiwiZ2l0aHViMkxhYmVsIjoiRnJvbnRlbmQgUmVwbyIsImdpdGh1YjMiOiJodHRwczovL2dpdGh1Yi5jb20vS2luZ1JvdnM3NzEvU2tyaXBzaS1NYWNoaW5lTGVhcm5pbmcuZ2l0IiwiZ2l0aHViM0xhYmVsIjoiTWFjaGluZSBMZWFybmluZyBSZXBvIiwibGl2ZSI6IiMifV0=";
 
-  {
-    id: 4,
-    title: 'Aplikasi Absensi Karyawan',
-    role: 'Full Stack Developer',
-    description: 'Aplikasi Absensi Karyawan ini tersedia versi Website yang digunakan untuk Administrator dan versi Mobile digunakan untuk Absensi Pegawai',
-    image: '/img/projects/absensi_karyawan.png',
-    tech: ['Next Js', 'Golang', 'Flutter'],
-    github: 'https://github.com/KingRovs771/AbsensiK-BackEnd.git',
-    github2: 'https://github.com/KingRovs771/AbsensiK-FrontEnd.git',
-    github3: 'https://github.com/KingRovs771/AbsensiK-Mobile.git',
-    live: '#',
-  },
-  {
-    id: 5,
-    title: 'Sistem Pakar Diagnosis Penyakit Mental Pada Pelajar (Skripsi)',
-    role: 'Full Stack Developer & ML Engineer',
-    description: 'Sistem pakar berbasis web untuk mendeteksi dini dan mendiagnosis penyakit/gangguan kesehatan mental pada pelajar. Mengintegrasikan frontend Next.js, backend Go (Gin/GORM), dan service Machine Learning (FastAPI & TensorFlow).',
-    image: '/img/projects/mentalcare.png',
-    tech: ['Next Js', 'Golang', 'FastAPI', 'TensorFlow', 'PostgreSQL', 'Expert System'],
-    github: 'https://github.com/KingRovs771/Skripsi-Backend.git',
-    githubLabel: 'Backend Repo',
-    github2: 'https://github.com/KingRovs771/Skripsi-Frontend.git',
-    github2Label: 'Frontend Repo',
-    github3: 'https://github.com/KingRovs771/Skripsi-MachineLearning.git',
-    github3Label: 'Machine Learning Repo',
-    live: '#',
-  },
-];
+interface PhotoItem {
+  id: number;
+  title: string;
+  category: string;
+  image: string;
+  year: string;
+  description: string;
+  camera: string;
+  lens: string;
+  iso: string;
+}
+
+interface AppItem {
+  id: number;
+  title: string;
+  role: string;
+  description: string;
+  image: string;
+  tech: string[];
+  github: string;
+  githubLabel?: string;
+  github2?: string;
+  github2Label?: string;
+  github3?: string;
+  github3Label?: string;
+  live: string;
+}
+
+// Decryption helper function
+const decodeData = <T,>(base64Str: string): T[] => {
+  if (typeof window === 'undefined') return [];
+  try {
+    const raw = window.atob(base64Str);
+    return JSON.parse(raw);
+  } catch (e) {
+    console.error('Failed to parse obfuscated portfolio data:', e);
+    return [];
+  }
+};
+
+export const PHOTOGRAPHY_DATA = decodeData<PhotoItem>(ENCRYPTED_PHOTOGRAPHY_DATA);
+export const APPS_DATA = decodeData<AppItem>(ENCRYPTED_APPS_DATA);
