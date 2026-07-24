@@ -146,10 +146,10 @@ export const APPS_DATA = [
   },
   {
     id: 5,
-    title: 'Sistem Pakar Diagnosis Penyakit Mental Pada Pelajar',
+    title: 'Sistem Pakar Diagnosis Penyakit Mental Pada Pelajar (Skripsi)',
     role: 'Full Stack Developer & ML Engineer',
     description: 'Sistem pakar berbasis web untuk mendeteksi dini dan mendiagnosis penyakit/gangguan kesehatan mental pada pelajar. Mengintegrasikan frontend Next.js, backend Go (Gin/GORM), dan service Machine Learning (FastAPI & TensorFlow).',
-    image: '/img/projects/expert_system_mental.png',
+    image: '/img/projects/mentalcare.png',
     tech: ['Next Js', 'Golang', 'FastAPI', 'TensorFlow', 'PostgreSQL', 'Expert System'],
     github: 'https://github.com/KingRovs771/Skripsi-Backend.git',
     githubLabel: 'Backend Repo',
