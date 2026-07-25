@@ -34,9 +34,10 @@ interface AppItem {
 
 // Decryption helper function
 const decodeData = <T,>(base64Str: string): T[] => {
-  if (typeof window === 'undefined') return [];
   try {
-    const raw = window.atob(base64Str);
+    const raw = typeof atob === 'function'
+      ? atob(base64Str)
+      : Buffer.from(base64Str, 'base64').toString('utf-8');
     return JSON.parse(raw);
   } catch (e) {
     console.error('Failed to parse obfuscated portfolio data:', e);
