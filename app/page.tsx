@@ -6,6 +6,7 @@ import Navbar from './src/components/Navbar';
 import ContactSection from './src/components/ContactSection';
 import Footer from './src/components/Footer';
 import HeroSection from './src/components/HeroSection';
+import EdukaByteSpotlight from './src/components/EdukaByteSpotlight';
 import PhotographySection from './src/components/PhotographySection';
 import ProjectModal from './src/components/ProjectModal';
 import ProjectsSection from './src/components/ProjectsSection';
@@ -99,6 +100,8 @@ export default function Home() {
       <Navbar activeSection={activeSection} scrollToSection={scrollToSection} refs={{ photographyRef, projectsRef, contactRef }} />
 
       <HeroSection scrollToRef={scrollToSection} refs={{ projectsRef, contactRef }} />
+
+      <EdukaByteSpotlight />
 
       <PhotographySection sectionRef={photographyRef} onSelectProject={setSelectedProject} />
 

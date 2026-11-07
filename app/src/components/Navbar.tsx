@@ -1,7 +1,8 @@
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
+import { X, Sparkles } from 'lucide-react';
 
 interface NavbarProps {
   activeSection: string;
@@ -84,6 +85,14 @@ const Navbar = ({ activeSection, scrollToSection, refs }: NavbarProps) => {
                   {activeSection === item.label.toLowerCase() && <motion.div layoutId="activeIndicator" className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-400 rounded-full" />}
                 </motion.button>
               ))}
+
+              <Link
+                href="/edukabyte"
+                className="relative font-medium px-3.5 py-1.5 rounded-full text-xs bg-gradient-to-r from-blue-600/20 to-cyan-500/20 text-cyan-300 border border-cyan-500/30 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-500/20 transition-all flex items-center gap-1.5 ml-2 cursor-pointer"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                EdukaByte
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -110,6 +119,20 @@ const Navbar = ({ activeSection, scrollToSection, refs }: NavbarProps) => {
                     {item.label}
                   </motion.button>
                 ))}
+
+                <Link
+                  href="/edukabyte"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-left px-4 py-3 rounded-xl transition-colors font-semibold text-base text-cyan-300 bg-gradient-to-r from-blue-950/60 to-cyan-950/60 border border-cyan-500/30 flex items-center justify-between mt-2"
+                >
+                  <span className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                    EdukaByte Suite
+                  </span>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300">
+                    Produk Baru
+                  </span>
+                </Link>
               </div>
             </div>
           </motion.div>
