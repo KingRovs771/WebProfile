@@ -178,15 +178,7 @@ export default function ProductCardsSection({
 
                       <div className="flex items-center justify-between font-mono text-[10px] text-zinc-500 pt-1">
                         <span>DEPLOYMENT: {product.deploymentMode.split('(')[0].trim()}</span>
-                        <a
-                          href={product.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-zinc-400 hover:text-zinc-200 inline-flex items-center gap-1"
-                        >
-                          <FileCode2 className="w-3 h-3" />
-                          <span>Repositori ↗</span>
-                        </a>
+                        <span>LISENSI: TAHUNAN / PERPETUAL</span>
                       </div>
                     </div>
                   </div>

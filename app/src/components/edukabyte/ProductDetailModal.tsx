@@ -190,16 +190,16 @@ export default function ProductDetailModal({
                   <div className="flex items-center justify-between text-zinc-500 pb-2 mb-2 border-b border-white/[0.06]">
                     <span className="flex items-center gap-2">
                       <Terminal className="w-3.5 h-3.5 text-zinc-300" />
-                      QUICK DEPLOYMENT COMMAND
+                      PROVISIONING &amp; ENTERPRISE DELIVERY
                     </span>
-                    <span className="text-[10px]">BASH</span>
+                    <span className="text-[10px]">EDUKABYTE INSTALLER</span>
                   </div>
                   <pre className="text-emerald-400 overflow-x-auto p-2 bg-zinc-900/60">
                     {product.id === 'cbt-edukabyte'
-                      ? 'git clone https://github.com/KingRovs771/EdukaByte.git\ncd EdukaByte && docker compose up -d'
+                      ? '# Paket Lisensi Resmi CBT EdukaByte\nedukabyte-cli provision --module=cbt --mode=on-premise-lan'
                       : product.id === 'pustaka-kita'
-                      ? 'pnpm install && pnpm run build\n# Edge Ready on Netlify + Cloudflare R2'
-                      : 'git clone https://github.com/KingRovs771/DMSEducation.git\ncd DMSEducation && docker compose -f docker-compose.prod.yml up -d'}
+                      ? '# Paket Lisensi Resmi PustakaKita\nedukabyte-cli provision --module=pustakakita --storage=cloudflare-r2'
+                      : '# Paket Lisensi Resmi DS Education\nedukabyte-cli provision --module=ds-education --vault=aes256-minio'}
                   </pre>
                 </div>
               </div>
@@ -251,15 +251,12 @@ export default function ProductDetailModal({
             </button>
 
             <div className="flex flex-wrap items-center gap-2.5">
-              <a
-                href={product.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-white/[0.1] font-mono text-xs transition-colors"
+              <button
+                onClick={onClose}
+                className="px-4 py-2.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-white/[0.1] font-mono text-xs transition-colors cursor-pointer"
               >
-                <span>Repositori</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
+                Tutup
+              </button>
 
               <button
                 onClick={() => {

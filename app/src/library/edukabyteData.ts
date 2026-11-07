@@ -28,7 +28,6 @@ export interface EdukaProduct {
     detail: string;
   }[];
   deploymentMode: string;
-  githubUrl: string;
   livePreviewUrl?: string;
 }
 
@@ -104,7 +103,6 @@ export const EDUKABYTE_PRODUCTS: EdukaProduct[] = [
       { label: 'Efisiensi Guru', value: '85%', detail: 'Pengurangan waktu rekap nilai semester' },
     ],
     deploymentMode: 'Self-Hosted (Docker Compose / Bare Metal Server / Proxmox VM)',
-    githubUrl: 'https://github.com/KingRovs771/EdukaByte',
   },
   {
     id: 'pustaka-kita',
@@ -177,7 +175,6 @@ export const EDUKABYTE_PRODUCTS: EdukaProduct[] = [
       { label: 'Penghematan Buku', value: '100%', detail: 'Akses digital buku teks kurikulum' },
     ],
     deploymentMode: 'Serverless Edge Deployment (Netlify + Neon + Cloudflare R2)',
-    githubUrl: 'https://github.com/KingRovs771/PerpustakaanDigitalSiswa',
   },
   {
     id: 'ds-education',
@@ -250,7 +247,6 @@ export const EDUKABYTE_PRODUCTS: EdukaProduct[] = [
       { label: 'Efisiensi Kertas TU', value: '90%', detail: 'Transisi penuh ke administrasi paperless' },
     ],
     deploymentMode: 'On-Premise Server / Virtual Machine (Dockerized Architecture)',
-    githubUrl: 'https://github.com/KingRovs771/DMSEducation',
   },
 ];
 
