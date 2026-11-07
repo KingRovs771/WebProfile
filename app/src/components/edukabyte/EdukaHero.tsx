@@ -338,3 +338,4 @@ export default function EdukaHero({ onExploreClick, onSimulationClick }: EdukaHe
     </section>
   );
 }
+

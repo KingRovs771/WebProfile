@@ -476,3 +476,4 @@ export default function GraphicMotionShowcase({ initialTab = 'cbt' }: GraphicMot
     </section>
   );
 }
+

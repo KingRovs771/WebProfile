@@ -268,3 +268,4 @@ export const SCHOOL_SAVINGS_CALCULATOR = {
   teacherGradingHoursPerSemester: 80, // jam koreksi manual
   tuPaperPerStudentPerYear: 25, // lembar cetak raport, surat, dsb
 };
+

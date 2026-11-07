@@ -309,3 +309,4 @@ export default function ProductDetailModal({
     </AnimatePresence>
   );
 }
+
