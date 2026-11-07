@@ -1,14 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Calculator, Trees, Clock, Coins, Sparkles, School } from 'lucide-react';
 import { SCHOOL_SAVINGS_CALCULATOR } from '../../library/edukabyteData';
 
 export default function SchoolImpactCalculator() {
   const [studentCount, setStudentCount] = useState<number>(650);
 
-  // Formulas
   const totalSheetsSavedPerYear =
     studentCount *
     SCHOOL_SAVINGS_CALCULATOR.examPerYear *
@@ -17,44 +14,43 @@ export default function SchoolImpactCalculator() {
   const totalPaperCostSaved =
     totalSheetsSavedPerYear * SCHOOL_SAVINGS_CALCULATOR.paperCostPerSheet;
 
-  const teacherHoursSavedPerYear = Math.round((studentCount / 40) * 12 * 2); // estimasi jam koreksi
+  const teacherHoursSavedPerYear = Math.round((studentCount / 40) * 12 * 2);
+  const treesSaved = (totalSheetsSavedPerYear / 8333).toFixed(1);
 
-  const treesSaved = (totalSheetsSavedPerYear / 8333).toFixed(1); // 1 pohon ~ 8.333 lembar A4
-
-  const formatRupiah = (val: number) => {
-    return new Intl.NumberFormat('id-ID', {
+  const formatRupiah = (val: number) =>
+    new Intl.NumberFormat('id-ID', {
       style: 'currency',
       currency: 'IDR',
       maximumFractionDigits: 0,
     }).format(val);
-  };
 
   return (
-    <section id="kalkulator-hemat" className="py-20 relative">
+    <section id="kalkulator-hemat" className="py-24 relative border-b border-white/[0.08]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-3">
-            <Calculator className="w-3.5 h-3.5" />
-            ROI & Dampak Penghematan Sekolah
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-10 border-b border-white/[0.08]">
+          <div>
+            <div className="font-mono text-[11px] text-zinc-500 uppercase tracking-wider mb-3">
+              [03 / BUDGET &amp; TIME EFFICIENCY SIMULATOR]
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.03em] text-zinc-100">
+              Simulasi Efisiensi Anggaran Dana BOS
+            </h2>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Kalkulator Efisiensi Dana BOS & Waktu Guru
-          </h2>
-          <p className="mt-2 text-slate-400 text-sm sm:text-base">
-            Geser jumlah siswa untuk melihat proyeksi efisiensi nyata penerapan ekosistem EdukaByte di sekolah Anda.
+          <p className="text-zinc-400 text-sm sm:text-base max-w-md">
+            Sesuaikan kapasitas siswa untuk menghitung penghematan cetak soal, LJK, dan jam koreksi
+            manual guru per tahun ajaran.
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto bg-slate-900/85 border border-slate-800 rounded-3xl p-6 sm:p-10 backdrop-blur-xl shadow-2xl">
-          {/* Slider Controls */}
-          <div className="mb-10">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-sm font-bold text-white flex items-center gap-2">
-                <School className="w-4 h-4 text-sky-400" />
-                Jumlah Siswa Aktif Sekolah:
+        <div className="border-x border-b border-white/[0.08] bg-[#0b0b0e]">
+          {/* Slider Control Row */}
+          <div className="p-6 sm:p-10 border-b border-white/[0.08]">
+            <div className="flex flex-wrap items-baseline justify-between gap-4 mb-4">
+              <span className="font-mono text-xs text-zinc-400 uppercase">
+                KAPASITAS SISWA AKTIF SEKOLAH:
               </span>
-              <span className="text-2xl font-black text-sky-400 bg-sky-500/10 px-4 py-1 rounded-xl border border-sky-500/30">
-                {studentCount.toLocaleString('id-ID')} Siswa
+              <span className="font-mono text-2xl sm:text-3xl font-semibold text-zinc-100">
+                {studentCount.toLocaleString('id-ID')} SISWA
               </span>
             </div>
 
@@ -65,90 +61,59 @@ export default function SchoolImpactCalculator() {
               step={50}
               value={studentCount}
               onChange={(e) => setStudentCount(Number(e.target.value))}
-              className="w-full h-3 bg-slate-950 rounded-lg appearance-none cursor-pointer accent-sky-400"
+              className="w-full h-2 bg-zinc-900 appearance-none cursor-pointer accent-zinc-100"
             />
 
-            <div className="flex justify-between text-[11px] font-mono text-slate-500 mt-2">
-              <span>150 Siswa (Sekolah Kecil)</span>
-              <span>1.000 Siswa (Sekolah Sedang)</span>
-              <span>2.500 Siswa (Sekolah Besar/SMK)</span>
+            <div className="flex justify-between font-mono text-[10px] text-zinc-500 mt-2.5">
+              <span>150 SISWA</span>
+              <span>1.000 SISWA</span>
+              <span>2.500 SISWA</span>
             </div>
           </div>
 
-          {/* Impact Results Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {/* 1. Penghematan Dana BOS */}
-            <motion.div
-              key={`money-${studentCount}`}
-              initial={{ scale: 0.95, opacity: 0.8 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="p-6 rounded-2xl bg-gradient-to-br from-emerald-950/40 to-slate-950 border border-emerald-500/30 text-center flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 mx-auto flex items-center justify-center mb-3">
-                  <Coins className="w-6 h-6" />
-                </div>
-                <div className="text-[11px] font-mono text-emerald-300 uppercase tracking-wider">
-                  Penghematan Dana BOS
-                </div>
-                <div className="text-xl sm:text-2xl font-black text-white mt-2">
-                  {formatRupiah(totalPaperCostSaved)}
-                </div>
+          {/* 3-Column Output Matrix */}
+          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/[0.08]">
+            <div className="p-7 sm:p-9">
+              <div className="font-mono text-[10px] text-zinc-500 uppercase mb-2">
+                [ESTIMASI PENGHEMATAN ANGGARAN CETAK]
               </div>
-              <p className="text-[11px] text-slate-400 mt-3 pt-3 border-t border-slate-800">
-                Dari eliminasi fotokopi soal & lembar LJK fisik per tahun
+              <div className="font-mono text-2xl sm:text-3xl font-semibold text-zinc-100">
+                {formatRupiah(totalPaperCostSaved)}
+              </div>
+              <p className="text-xs text-zinc-400 mt-2">
+                Penghematan tahunan dari eliminasi cetak naskah ujian dan lembar LJK fisik (4x ujian
+                utama/tahun).
               </p>
-            </motion.div>
+            </div>
 
-            {/* 2. Jam Kerja Guru */}
-            <motion.div
-              key={`time-${studentCount}`}
-              initial={{ scale: 0.95, opacity: 0.8 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="p-6 rounded-2xl bg-gradient-to-br from-blue-950/40 to-slate-950 border border-blue-500/30 text-center flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-12 h-12 rounded-xl bg-blue-500/10 text-sky-400 mx-auto flex items-center justify-center mb-3">
-                  <Clock className="w-6 h-6" />
-                </div>
-                <div className="text-[11px] font-mono text-sky-300 uppercase tracking-wider">
-                  Waktu Guru Dihemat
-                </div>
-                <div className="text-xl sm:text-2xl font-black text-white mt-2">
-                  ~{teacherHoursSavedPerYear} Jam / Tahun
-                </div>
+            <div className="p-7 sm:p-9">
+              <div className="font-mono text-[10px] text-zinc-500 uppercase mb-2">
+                [EFISIENSI WAKTU KOREKSI GURU]
               </div>
-              <p className="text-[11px] text-slate-400 mt-3 pt-3 border-t border-slate-800">
-                Otomatisasi koreksi instan nilai ujian & analitik AKM
+              <div className="font-mono text-2xl sm:text-3xl font-semibold text-zinc-100">
+                ~{teacherHoursSavedPerYear} Jam / Thn
+              </div>
+              <p className="text-xs text-zinc-400 mt-2">
+                Waktu kerja produktif guru yang dihemat melalui koreksi otomatis CBT &amp; pemindaian
+                AI OMR.
               </p>
-            </motion.div>
+            </div>
 
-            {/* 3. Pohon Diselamatkan */}
-            <motion.div
-              key={`trees-${studentCount}`}
-              initial={{ scale: 0.95, opacity: 0.8 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="p-6 rounded-2xl bg-gradient-to-br from-teal-950/40 to-slate-950 border border-teal-500/30 text-center flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-12 h-12 rounded-xl bg-teal-500/10 text-teal-400 mx-auto flex items-center justify-center mb-3">
-                  <Trees className="w-6 h-6" />
-                </div>
-                <div className="text-[11px] font-mono text-teal-300 uppercase tracking-wider">
-                  Dampak Lingkungan Hijau
-                </div>
-                <div className="text-xl sm:text-2xl font-black text-white mt-2">
-                  ~{treesSaved} Pohon / Tahun
-                </div>
+            <div className="p-7 sm:p-9">
+              <div className="font-mono text-[10px] text-zinc-500 uppercase mb-2">
+                [REDUKSI KERTAS &amp; EKOLOGI]
               </div>
-              <p className="text-[11px] text-slate-400 mt-3 pt-3 border-t border-slate-800">
-                Setara {totalSheetsSavedPerYear.toLocaleString('id-ID')} lembar kertas dihemat
+              <div className="font-mono text-2xl sm:text-3xl font-semibold text-zinc-100">
+                {totalSheetsSavedPerYear.toLocaleString('id-ID')} Lembar
+              </div>
+              <p className="text-xs text-zinc-400 mt-2">
+                Setara penyelamatan ~{treesSaved} pohon per tahun melalui digitalisasi ujian dan
+                arsip tata usaha.
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
 }
-

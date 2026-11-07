@@ -1,22 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Scan,
   BookOpen,
   Lock,
   Play,
-  RotateCcw,
   CheckCircle2,
-  Sparkles,
   Wifi,
   WifiOff,
-  Cpu,
-  Fingerprint,
   QrCode,
   FileCheck2,
-  Zap,
+  RefreshCw,
 } from 'lucide-react';
 
 interface GraphicMotionShowcaseProps {
@@ -24,22 +20,30 @@ interface GraphicMotionShowcaseProps {
 }
 
 export default function GraphicMotionShowcase({ initialTab = 'cbt' }: GraphicMotionShowcaseProps) {
-  const [activeTab, setActiveTab] = useState<'cbt' | 'pustaka' | 'dms'>(
-    initialTab === 'pustaka-kita' ? 'pustaka' : initialTab === 'ds-education' ? 'dms' : 'cbt'
-  );
+  const [activeTab, setActiveTab] = useState<'cbt' | 'pustaka' | 'dms'>('cbt');
 
-  // States for CBT AI OMR Simulator
+  useEffect(() => {
+    if (initialTab === 'pustaka-kita' || initialTab === 'pustaka') {
+      setActiveTab('pustaka');
+    } else if (initialTab === 'ds-education' || initialTab === 'dms') {
+      setActiveTab('dms');
+    } else if (initialTab === 'cbt-edukabyte' || initialTab === 'cbt') {
+      setActiveTab('cbt');
+    }
+  }, [initialTab]);
+
+  // CBT AI OMR Simulator States
   const [isScanning, setIsScanning] = useState(false);
-  const [scanComplete, setScanComplete] = useState(false);
+  const [scanComplete, setScanComplete] = useState(true);
 
-  // States for PustakaKita Offline Simulator
+  // PustakaKita Offline Simulator States
   const [isOfflineMode, setIsOfflineMode] = useState(false);
   const [readingPage, setReadingPage] = useState(42);
 
-  // States for DS Education NeuralKey Simulator
+  // DS Education NeuralKey Simulator States
   const [isSealing, setIsSealing] = useState(false);
-  const [documentSealed, setDocumentSealed] = useState(false);
-  const [hashToken, setHashToken] = useState('a9f4c3...81e2');
+  const [documentSealed, setDocumentSealed] = useState(true);
+  const [hashToken, setHashToken] = useState('e3b0c44298fc1c149afbf4c8996fb924');
 
   const runScanSimulation = () => {
     setIsScanning(true);
@@ -47,7 +51,7 @@ export default function GraphicMotionShowcase({ initialTab = 'cbt' }: GraphicMot
     setTimeout(() => {
       setIsScanning(false);
       setScanComplete(true);
-    }, 2200);
+    }, 1800);
   };
 
   const runSealSimulation = () => {
@@ -56,416 +60,343 @@ export default function GraphicMotionShowcase({ initialTab = 'cbt' }: GraphicMot
     setTimeout(() => {
       setIsSealing(false);
       setDocumentSealed(true);
-      setHashToken(
-        Math.random().toString(36).substring(2, 8) +
-          '...' +
-          Math.random().toString(36).substring(2, 6)
-      );
-    }, 2000);
+      const randomHex = Array.from({ length: 32 }, () =>
+        Math.floor(Math.random() * 16).toString(16)
+      ).join('');
+      setHashToken(randomHex);
+    }, 1500);
   };
 
   return (
-    <section id="simulasi" className="py-20 relative bg-slate-950/60 border-y border-slate-900">
+    <section id="simulasi" className="py-24 relative border-b border-white/[0.08]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-3">
-            <Sparkles className="w-3.5 h-3.5" />
-            Interactive Graphic Motion Playground
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Uji Coba Langsung Teknologi Inti
-          </h2>
-          <p className="mt-2 text-slate-400 text-sm sm:text-base">
-            Rasakan keunggulan arsitektur setiap produk melalui simulasi interaktif micro-motion di bawah ini.
-          </p>
-
-          {/* Simulator Navigation Tabs */}
-          <div className="flex justify-center mt-6">
-            <div className="inline-flex p-1.5 bg-slate-900 border border-slate-800 rounded-2xl">
-              <button
-                onClick={() => setActiveTab('cbt')}
-                className={`flex items-center gap-2 text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl transition-all cursor-pointer ${
-                  activeTab === 'cbt'
-                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
-                    : 'text-slate-400 hover:text-white'
-                }`}
-              >
-                <Scan className="w-4 h-4" />
-                AI OMR Scanner (CBT)
-              </button>
-              <button
-                onClick={() => setActiveTab('pustaka')}
-                className={`flex items-center gap-2 text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl transition-all cursor-pointer ${
-                  activeTab === 'pustaka'
-                    ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-500/30'
-                    : 'text-slate-400 hover:text-white'
-                }`}
-              >
-                <BookOpen className="w-4 h-4" />
-                Offline Reader (PustakaKita)
-              </button>
-              <button
-                onClick={() => setActiveTab('dms')}
-                className={`flex items-center gap-2 text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl transition-all cursor-pointer ${
-                  activeTab === 'dms'
-                    ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30'
-                    : 'text-slate-400 hover:text-white'
-                }`}
-              >
-                <Lock className="w-4 h-4" />
-                NeuralKey Stamping (DS)
-              </button>
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-10 border-b border-white/[0.08]">
+          <div>
+            <div className="font-mono text-[11px] text-zinc-500 uppercase tracking-wider mb-3">
+              [02 / INTERACTIVE SYSTEM TELEMETRY]
             </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.03em] text-zinc-100">
+              Simulasi Kerja Mesin Secara Langsung
+            </h2>
+            <p className="mt-3 text-zinc-400 max-w-2xl text-sm sm:text-base">
+              Uji langsung mekanisme pemindaian AI OMR, ketahanan cache offline PustakaKita, dan
+              penyegelan kriptografi dokumen DS Education.
+            </p>
+          </div>
+
+          {/* Simulator Selector Strip */}
+          <div className="flex flex-wrap items-center gap-1.5">
+            {[
+              { id: 'cbt', code: 'SIM.01', label: 'AI OMR Scanner (CBT)', Icon: Scan },
+              { id: 'pustaka', code: 'SIM.02', label: 'Offline PWA (PustakaKita)', Icon: BookOpen },
+              { id: 'dms', code: 'SIM.03', label: 'NeuralKey Seal (DS Education)', Icon: Lock },
+            ].map((item) => {
+              const isSelected = activeTab === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveTab(item.id as any)}
+                  className={`px-4 py-2.5 font-mono text-xs border transition-colors cursor-pointer flex items-center gap-2 ${
+                    isSelected
+                      ? 'bg-zinc-100 text-zinc-950 border-zinc-100 font-semibold'
+                      : 'bg-zinc-900/60 text-zinc-400 border-white/[0.08] hover:text-zinc-200'
+                  }`}
+                >
+                  <item.Icon className="w-3.5 h-3.5" />
+                  <span>{item.label}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        {/* Interactive Motion Canvas Area */}
-        <div className="max-w-4xl mx-auto bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-10 backdrop-blur-xl shadow-2xl relative overflow-hidden">
+        {/* Console Container */}
+        <div className="border-x border-b border-white/[0.08] bg-[#0b0b0e] p-6 sm:p-10">
           <AnimatePresence mode="wait">
-            {/* 1. CBT AI OMR Scanner Simulation */}
+            {/* 1. CBT AI OMR Scanner */}
             {activeTab === 'cbt' && (
               <motion.div
                 key="cbt"
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25 }}
                 className="space-y-6"
               >
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/[0.08]">
                   <div>
-                    <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                      <Scan className="w-5 h-5 text-sky-400" />
-                      Simulasi Pemindaian Lembar LJK Fisik via AI
+                    <div className="font-mono text-[10px] text-zinc-500 uppercase mb-1">
+                      OPTICAL MARK RECOGNITION PIPELINE // OPENCV + PYTORCH
+                    </div>
+                    <h3 className="text-xl font-semibold text-zinc-100">
+                      Pemindaian Lembar Jawaban Kertas (LJK) Otomatis
                     </h3>
-                    <p className="text-xs text-slate-400 mt-0.5">
-                      Model computer vision mendeteksi bulatan pensil 2B secara instan tanpa scanner khusus LJK.
-                    </p>
                   </div>
+
                   <button
                     onClick={runScanSimulation}
                     disabled={isScanning}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-xs font-bold shadow-lg shadow-blue-500/25 hover:shadow-cyan-400/40 disabled:opacity-50 transition-all cursor-pointer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-zinc-100 hover:bg-white disabled:opacity-50 text-zinc-950 font-mono text-xs font-semibold transition-colors cursor-pointer"
                   >
                     {isScanning ? (
                       <>
-                        <Zap className="w-4 h-4 animate-spin" />
-                        Sedang Memindai...
+                        <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                        <span>MEMINDAI CITRA LJK...</span>
                       </>
                     ) : (
                       <>
-                        <Play className="w-4 h-4 fill-current" />
-                        Pindai Lembar LJK (Kamera)
+                        <Play className="w-3.5 h-3.5 fill-current" />
+                        <span>JALANKAN PEMINDAIAN ULANG</span>
                       </>
                     )}
                   </button>
                 </div>
 
-                {/* Simulated LJK Sheet with Motion Laser */}
-                <div className="relative bg-slate-950 border border-slate-800 rounded-2xl p-6 overflow-hidden min-h-[300px] flex flex-col justify-between">
-                  {/* Scanning Laser Beam */}
+                {/* LJK Matrix Viewport */}
+                <div className="relative bg-zinc-950 border border-white/[0.08] p-6 overflow-hidden">
                   {isScanning && (
                     <motion.div
-                      className="absolute left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 via-sky-300 to-blue-500 shadow-[0_0_15px_#38bdf8] z-20"
+                      className="absolute left-0 right-0 h-[2px] bg-emerald-400 shadow-[0_0_20px_#10b981] z-20"
                       initial={{ top: '0%' }}
                       animate={{ top: ['0%', '100%', '0%'] }}
-                      transition={{ duration: 2.2, ease: 'easeInOut' }}
+                      transition={{ duration: 1.8, ease: 'linear' }}
                     />
                   )}
 
-                  {/* LJK Header Mockup */}
-                  <div className="flex items-center justify-between pb-4 border-b border-slate-800/80">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-blue-500/20 text-sky-400 flex items-center justify-center font-bold text-xs">
-                        LJK
-                      </div>
-                      <div>
-                        <div className="text-xs font-bold text-white">PENILAIAN AKHIR SEMESTER (PAS)</div>
-                        <div className="text-[11px] font-mono text-slate-400">
-                          Siswa: Ahmad Fauzan • NISN: 0071239821 • Matematika
-                        </div>
-                      </div>
-                    </div>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">
-                      Form Standard 50-Soal
+                  <div className="flex flex-wrap items-center justify-between gap-2 pb-4 mb-6 border-b border-white/[0.06] font-mono text-xs">
+                    <span className="text-zinc-200">
+                      PESERTA: AHMAD FAUZAN // NISN: 0071239821 // MAPEL: MATEMATIKA WAJIB
                     </span>
+                    <span className="text-zinc-500">TEMPLATE: LJK-50-STANDAR</span>
                   </div>
 
-                  {/* Bubble Answer Matrix Mockup */}
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 py-4 text-xs font-mono">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
                     {[
-                      { no: '01', ans: 'A', status: 'correct' },
-                      { no: '02', ans: 'C', status: 'correct' },
-                      { no: '03', ans: 'B', status: 'correct' },
-                      { no: '04', ans: 'D', status: 'correct' },
-                      { no: '05', ans: 'A', status: 'correct' },
-                      { no: '06', ans: 'E', status: 'correct' },
-                      { no: '07', ans: 'C', status: 'wrong' },
-                      { no: '08', ans: 'B', status: 'correct' },
-                    ].map((item, idx) => (
+                      { no: '01', ans: 'A', key: 'A', ok: true },
+                      { no: '02', ans: 'C', key: 'C', ok: true },
+                      { no: '03', ans: 'B', key: 'B', ok: true },
+                      { no: '04', ans: 'D', key: 'D', ok: true },
+                      { no: '05', ans: 'A', key: 'A', ok: true },
+                      { no: '06', ans: 'E', key: 'E', ok: true },
+                      { no: '07', ans: 'C', key: 'A', ok: false },
+                      { no: '08', ans: 'B', key: 'B', ok: true },
+                    ].map((row) => (
                       <div
-                        key={idx}
-                        className={`p-2 rounded-xl border flex items-center justify-between transition-all ${
+                        key={row.no}
+                        className={`p-3 border flex items-center justify-between transition-colors ${
                           scanComplete
-                            ? item.status === 'correct'
-                              ? 'bg-emerald-950/30 border-emerald-500/40 text-emerald-300'
-                              : 'bg-rose-950/30 border-rose-500/40 text-rose-300'
-                            : 'bg-slate-900/60 border-slate-800 text-slate-400'
+                            ? row.ok
+                              ? 'bg-zinc-900/70 border-white/[0.12] text-zinc-200'
+                              : 'bg-rose-950/20 border-rose-500/30 text-rose-300'
+                            : 'bg-zinc-900/30 border-white/[0.05] text-zinc-500'
                         }`}
                       >
-                        <span>Soal {item.no}</span>
-                        <div className="flex items-center gap-1.5">
-                          <span className="w-5 h-5 rounded-full bg-slate-800 flex items-center justify-center font-bold text-[11px] text-white">
-                            {item.ans}
+                        <span>SOAL {row.no}</span>
+                        <div className="flex items-center gap-2">
+                          <span className="w-6 h-6 bg-zinc-950 border border-white/[0.12] flex items-center justify-center text-zinc-100 font-semibold">
+                            {row.ans}
                           </span>
                           {scanComplete && (
-                            <span>{item.status === 'correct' ? '✓' : '✗'}</span>
+                            <span className={row.ok ? 'text-emerald-400' : 'text-rose-400'}>
+                              {row.ok ? 'OK' : `KEY:${row.key}`}
+                            </span>
                           )}
                         </div>
                       </div>
                     ))}
                   </div>
 
-                  {/* Scan Result Feedback Bar */}
-                  <div className="pt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4">
-                    <div className="flex items-center gap-3">
-                      <div className="text-2xl font-black text-white">
-                        {scanComplete ? (
-                          <span className="text-emerald-400">96 / 100</span>
-                        ) : (
-                          <span className="text-slate-500">-- / 100</span>
-                        )}
-                      </div>
-                      <div className="text-[11px] text-slate-400">
-                        {scanComplete
-                          ? 'Koreksi Selesai (48 Benar, 2 Salah)'
-                          : 'Klik tombol Pindai untuk menguji coba'}
-                      </div>
+                  <div className="mt-6 pt-4 border-t border-white/[0.06] flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
+                    <div className="flex items-center gap-4">
+                      <span className="text-zinc-400">HASIL AKHIR:</span>
+                      <span className="text-xl font-semibold text-zinc-100">
+                        {scanComplete ? '96.0 / 100' : '-- / 100'}
+                      </span>
                     </div>
-                    {scanComplete && (
-                      <div className="flex items-center gap-2">
-                        <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
-                          <CheckCircle2 className="w-3.5 h-3.5" />
-                          LULUS KKM (0.68 detik)
-                        </span>
-                      </div>
-                    )}
+                    <div className="text-emerald-400 flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5" />
+                      <span>
+                        {scanComplete
+                          ? '48 BENAR · 2 SALAH · LATENSI 0.64 DETIK'
+                          : 'MENUNGGU PEMINDAIAN...'}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </motion.div>
             )}
 
-            {/* 2. PustakaKita Offline-First Reader Simulation */}
+            {/* 2. PustakaKita Offline Reader */}
             {activeTab === 'pustaka' && (
               <motion.div
                 key="pustaka"
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25 }}
                 className="space-y-6"
               >
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/[0.08]">
                   <div>
-                    <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                      <BookOpen className="w-5 h-5 text-emerald-400" />
-                      Simulasi Reader PWA Offline-First Siswa
+                    <div className="font-mono text-[10px] text-zinc-500 uppercase mb-1">
+                      SERVICE WORKER PWA // NISN 10-DIGIT SINGLE SIGN-ON
+                    </div>
+                    <h3 className="text-xl font-semibold text-zinc-100">
+                      Ketahanan Baca Buku Tanpa Koneksi Internet
                     </h3>
-                    <p className="text-xs text-slate-400 mt-0.5">
-                      Buku tetap lancar dibaca meskipun koneksi internet diputus seketika.
-                    </p>
                   </div>
 
-                  {/* Toggle Offline Mode Button */}
                   <button
                     onClick={() => setIsOfflineMode(!isOfflineMode)}
-                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                    className={`inline-flex items-center gap-2 px-4 py-2.5 font-mono text-xs font-semibold border transition-colors cursor-pointer ${
                       isOfflineMode
-                        ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/30'
-                        : 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/30'
+                        ? 'bg-amber-500/10 text-amber-300 border-amber-500/30'
+                        : 'bg-zinc-100 text-zinc-950 border-zinc-100'
                     }`}
                   >
                     {isOfflineMode ? (
                       <>
-                        <WifiOff className="w-4 h-4" />
-                        Status: Terputus (Offline)
+                        <WifiOff className="w-3.5 h-3.5" />
+                        <span>JARINGAN DIPUTUS (OFFLINE CACHE AKTIF)</span>
                       </>
                     ) : (
                       <>
-                        <Wifi className="w-4 h-4" />
-                        Status: Terhubung (Online)
+                        <Wifi className="w-3.5 h-3.5" />
+                        <span>TERHUBUNG (KLIK UNTUK SIMULASI PUTUS INTERNET)</span>
                       </>
                     )}
                   </button>
                 </div>
 
-                {/* Reader Canvas Mockup */}
-                <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6 min-h-[300px] flex flex-col justify-between">
-                  <div className="flex items-center justify-between pb-4 border-b border-slate-800/80">
-                    <div className="flex items-center gap-2.5">
-                      <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                        <Fingerprint className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-bold text-white">Siswa: Siti Rahmawati</div>
-                        <div className="text-[11px] font-mono text-slate-400">
-                          NISN: 0087654321 • SMP Negeri 1 • Kelas VIII-B
-                        </div>
-                      </div>
-                    </div>
-                    <span
-                      className={`text-[10px] font-bold px-2.5 py-1 rounded-full border ${
-                        isOfflineMode
-                          ? 'bg-amber-500/10 text-amber-300 border-amber-500/30'
-                          : 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30'
-                      }`}
-                    >
-                      {isOfflineMode ? 'Cache PWA Aktif' : 'Cloudflare R2 Synced'}
+                <div className="bg-zinc-950 border border-white/[0.08] p-6 space-y-6">
+                  <div className="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-white/[0.06] font-mono text-xs text-zinc-400">
+                    <span>READER SESSION // SITI RAHMAWATI (NISN: 0087654321)</span>
+                    <span className={isOfflineMode ? 'text-amber-400' : 'text-emerald-400'}>
+                      {isOfflineMode
+                        ? 'SOURCE: LOCAL INDEXEDDB CACHE (0 KBPS)'
+                        : 'SOURCE: CLOUDFLARE R2 EDGE CDN'}
                     </span>
                   </div>
 
-                  {/* Book Page Content Mockup */}
-                  <div className="py-6 px-4 bg-slate-900/50 rounded-xl border border-slate-800/60 my-4">
-                    <div className="text-xs font-mono text-emerald-400 mb-2 uppercase tracking-wider">
-                      Buku Sekolah Elektronik (BSE) • Bab IV: Dinamika Kependudukan Indonesia
+                  <div className="p-6 bg-zinc-900/50 border border-white/[0.06] max-w-3xl mx-auto">
+                    <div className="font-mono text-[11px] text-zinc-500 mb-2">
+                      BUKU SEKOLAH ELEKTRONIK (BSE) — ILMU PENGETAHUAN SOSIAL KELAS VIII · HALAMAN{' '}
+                      {readingPage}
                     </div>
-                    <p className="text-sm text-slate-200 leading-relaxed font-serif">
-                      “Indonesia memiliki kekayaan demografis yang sangat strategis. Melalui program literasi digital
-                      sekolah, setiap pelajar berhak mengakses sumber ilmu pengetahuan bermutu tanpa terhalang biaya
-                      maupun keterbatasan koneksi internet...”
+                    <p className="text-sm sm:text-base text-zinc-200 leading-relaxed font-serif">
+                      &ldquo;Pemerataan akses literasi di seluruh kepulauan Indonesia memerlukan
+                      infrastruktur perangkat lunak yang tidak bergantung pada stabilitas sinyal
+                      seluler semata. Dengan menyimpan buku terkompresi di memori peramban siswa,
+                      proses belajar tetap berlangsung di sekolah maupun di rumah.&rdquo;
                     </p>
                   </div>
 
-                  {/* Reading Progress Controls */}
-                  <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-800">
-                    <div className="flex items-center gap-3">
+                  <div className="pt-4 border-t border-white/[0.06] flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
+                    <div className="flex items-center gap-2">
                       <button
                         onClick={() => setReadingPage(Math.max(1, readingPage - 1))}
-                        className="px-3 py-1.5 rounded-lg bg-slate-800 text-xs font-semibold text-slate-300 hover:text-white"
+                        className="px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 border border-white/[0.1] text-zinc-200 cursor-pointer"
                       >
-                        Hal Sebelumnya
+                        ← PREV
                       </button>
-                      <span className="text-xs font-mono text-white">
-                        Halaman <strong>{readingPage}</strong> dari 180
-                      </span>
+                      <span className="px-3 text-zinc-300">HAL {readingPage} / 180</span>
                       <button
                         onClick={() => setReadingPage(Math.min(180, readingPage + 1))}
-                        className="px-3 py-1.5 rounded-lg bg-slate-800 text-xs font-semibold text-slate-300 hover:text-white"
+                        className="px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 border border-white/[0.1] text-zinc-200 cursor-pointer"
                       >
-                        Hal Selanjutnya
+                        NEXT →
                       </button>
                     </div>
-
-                    <div className="text-xs text-slate-400 flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>Durasi Baca Hari Ini: <strong>48 Menit</strong></span>
-                    </div>
+                    <span className="text-zinc-400">
+                      LOG LITERASI TERSIMPAN: <strong className="text-zinc-100">48 MENIT HARI INI</strong>
+                    </span>
                   </div>
                 </div>
               </motion.div>
             )}
 
-            {/* 3. DS Education NeuralKey Tamper-Proof Stamping */}
+            {/* 3. DS Education NeuralKey Stamping */}
             {activeTab === 'dms' && (
               <motion.div
                 key="dms"
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25 }}
                 className="space-y-6"
               >
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/[0.08]">
                   <div>
-                    <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                      <Lock className="w-5 h-5 text-indigo-400" />
-                      Simulasi Segel Kriptografi Dokumen PyTorch NeuralKey
+                    <div className="font-mono text-[10px] text-zinc-500 uppercase mb-1">
+                      DOCUMENT INTEGRITY VAULT // PYTORCH NEURALKEYGEN + SHA-256
+                    </div>
+                    <h3 className="text-xl font-semibold text-zinc-100">
+                      Penyegelan Kriptografi Arsip &amp; Surat Keputusan Sekolah
                     </h3>
-                    <p className="text-xs text-slate-400 mt-0.5">
-                      Menghasilkan kode segel dokumen anti-pemalsuan dan verifikasi QR terenkripsi.
-                    </p>
                   </div>
 
                   <button
                     onClick={runSealSimulation}
                     disabled={isSealing}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-500 text-white text-xs font-bold shadow-lg shadow-indigo-500/25 hover:shadow-purple-400/40 disabled:opacity-50 transition-all cursor-pointer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-zinc-100 hover:bg-white disabled:opacity-50 text-zinc-950 font-mono text-xs font-semibold transition-colors cursor-pointer"
                   >
                     {isSealing ? (
                       <>
-                        <Zap className="w-4 h-4 animate-spin" />
-                        Mengenkripsi Segel...
+                        <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                        <span>MENGENKRIPSI SEGEL...</span>
                       </>
                     ) : (
                       <>
-                        <Play className="w-4 h-4 fill-current" />
-                        Segel Dokumen Resmi
+                        <Lock className="w-3.5 h-3.5" />
+                        <span>GENERATE SEGEL BARU</span>
                       </>
                     )}
                   </button>
                 </div>
 
-                {/* Document Stamping Area */}
-                <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6 min-h-[300px] flex flex-col justify-between relative overflow-hidden">
-                  <div className="flex items-center justify-between pb-4 border-b border-slate-800/80">
-                    <div className="flex items-center gap-2.5">
-                      <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                        <FileCheck2 className="w-4 h-4" />
+                <div className="bg-zinc-950 border border-white/[0.08] p-6 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                  <div className="md:col-span-8 space-y-3 font-mono text-xs">
+                    <div className="flex items-center gap-2 text-zinc-200 font-semibold">
+                      <FileCheck2 className="w-4 h-4 text-emerald-400" />
+                      <span>DOKUMEN: SK_KELULUSAN_DAN_TRANSKRIP_2026.PDF</span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 text-[11px]">
+                      <div className="p-3 bg-zinc-900/60 border border-white/[0.06]">
+                        <span className="text-zinc-500 block">KLASIFIKASI OTOMATIS (AI)</span>
+                        <span className="text-zinc-200">STANDAR 08 — PENILAIAN PENDIDIKAN</span>
                       </div>
-                      <div>
-                        <div className="text-xs font-bold text-white">
-                          SURAT KEPUTUSAN KELULUSAN SISWA & IJAZAH
-                        </div>
-                        <div className="text-[11px] font-mono text-slate-400">
-                          Nomor: 421.3/089/SMP-01/VI/2026 • Arsip Standar Penilaian SNP
-                        </div>
+                      <div className="p-3 bg-zinc-900/60 border border-white/[0.06]">
+                        <span className="text-zinc-500 block">OBJECT STORAGE</span>
+                        <span className="text-zinc-200">MINIO S3 BUCKET (AES-256-GCM)</span>
                       </div>
                     </div>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">
-                      Format PDF/A-3b
-                    </span>
-                  </div>
-
-                  {/* Stamp Graphic Motion Visualization */}
-                  <div className="py-6 flex flex-col sm:flex-row items-center justify-around gap-6">
-                    <div className="space-y-1.5 text-xs text-slate-300">
-                      <div>Klasifikasi Arsip: <strong className="text-white">Kesiswaan (04)</strong></div>
-                      <div>Tingkat Akses: <strong className="text-emerald-400">Terbuka untuk Umum</strong></div>
-                      <div>Penyimpanan: <strong className="text-indigo-300">MinIO Bucket (Encrypted)</strong></div>
-                      <div>Integritas: <strong className="text-white">SHA-256 Checksum Valid</strong></div>
-                    </div>
-
-                    {/* Stamped Seal Badge */}
-                    <div className="relative">
-                      {documentSealed ? (
-                        <motion.div
-                          initial={{ scale: 0, rotate: -20 }}
-                          animate={{ scale: 1, rotate: 0 }}
-                          transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-                          className="w-36 h-36 rounded-2xl bg-gradient-to-tr from-indigo-950 to-purple-900 border-2 border-indigo-400/80 p-3 flex flex-col items-center justify-center text-center shadow-xl shadow-indigo-500/30"
-                        >
-                          <QrCode className="w-12 h-12 text-indigo-300 mb-1" />
-                          <span className="text-[9px] font-mono text-indigo-200 font-bold uppercase">
-                            NeuralKey Verified
-                          </span>
-                          <span className="text-[8px] font-mono text-indigo-400">
-                            Token: {hashToken}
-                          </span>
-                        </motion.div>
-                      ) : (
-                        <div className="w-36 h-36 rounded-2xl border-2 border-dashed border-slate-800 flex flex-col items-center justify-center text-slate-600 text-xs text-center p-3">
-                          <Lock className="w-6 h-6 mb-1 opacity-50" />
-                          <span>Klik tombol untuk membubuhkan segel digital</span>
-                        </div>
-                      )}
+                    <div className="p-3 bg-zinc-900/60 border border-white/[0.06] text-[11px] break-all">
+                      <span className="text-zinc-500 block mb-0.5">SHA-256 SIGNATURE DIGEST:</span>
+                      <span className="text-emerald-400">{hashToken}</span>
                     </div>
                   </div>
 
-                  {/* Footer Seal Info */}
-                  <div className="pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400 font-mono">
-                    <span>Algorithm: PyTorch 2.3 NeuralKeyGen</span>
-                    <span className="text-indigo-400">Audit Trail: Logged at Server</span>
+                  <div className="md:col-span-4 flex justify-center">
+                    {documentSealed ? (
+                      <motion.div
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        className="p-5 bg-zinc-900 border border-white/[0.15] text-center font-mono w-44"
+                      >
+                        <QrCode className="w-16 h-16 text-zinc-100 mx-auto mb-2" />
+                        <div className="text-[10px] font-semibold text-emerald-400">
+                          NEURALKEY VERIFIED
+                        </div>
+                        <div className="text-[9px] text-zinc-500 mt-0.5 truncate">
+                          ID: {hashToken.slice(0, 12)}
+                        </div>
+                      </motion.div>
+                    ) : (
+                      <div className="p-5 border border-dashed border-white/[0.1] text-center font-mono text-xs text-zinc-500 w-44 h-36 flex items-center justify-center">
+                        COMPUTING HASH...
+                      </div>
+                    )}
                   </div>
                 </div>
               </motion.div>
@@ -476,4 +407,3 @@ export default function GraphicMotionShowcase({ initialTab = 'cbt' }: GraphicMot
     </section>
   );
 }
-

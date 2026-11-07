@@ -1,45 +1,85 @@
 'use client';
+
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Camera } from 'lucide-react';
+import { X } from 'lucide-react';
 
 const ProjectModal = ({ project, onClose }: any) => {
   if (!project) return null;
 
   return (
     <AnimatePresence>
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/90 flex items-center justify-center p-4 z-50 backdrop-blur-sm" onClick={onClose}>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 bg-black/92 flex items-center justify-center p-4 sm:p-6 z-50 backdrop-blur-md"
+        onClick={onClose}
+      >
         <motion.div
-          initial={{ scale: 0.95, opacity: 0, y: 20 }}
+          initial={{ scale: 0.97, opacity: 0, y: 12 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
-          exit={{ scale: 0.95, opacity: 0, y: 20 }}
-          className="bg-slate-900 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-slate-800/50 shadow-2xl scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent"
+          exit={{ scale: 0.97, opacity: 0, y: 12 }}
+          transition={{ duration: 0.25 }}
+          className="bg-[#0b0b0e] max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-white/[0.12] shadow-2xl"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="relative">
-            <img src={project.image} alt={project.title} className="w-full max-h-[60vh] object-contain bg-black" />
-            <button onClick={onClose} className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 rounded-full w-10 h-10 flex items-center justify-center text-white transition-colors backdrop-blur-md">
-              <X size={20} />
+          {/* Top Technical Header */}
+          <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/[0.08] font-mono text-xs text-zinc-400">
+            <span>
+              FRM // {String(project.id).padStart(3, '0')} — {project.category?.toUpperCase()}
+            </span>
+            <button
+              onClick={onClose}
+              className="p-1.5 text-zinc-400 hover:text-white border border-white/[0.08] hover:border-white/[0.2] transition-colors cursor-pointer"
+            >
+              <X size={16} />
             </button>
           </div>
-          <div className="p-8">
-            <div className="flex justify-between items-start mb-4">
-              <h3 className="text-2xl font-bold text-white">{project.title}</h3>
-              <span className="text-sm px-3 py-1 bg-slate-800 text-slate-400 rounded-full border border-slate-700">{project.year}</span>
+
+          {/* Image Viewport */}
+          <div className="relative bg-black border-b border-white/[0.08] flex items-center justify-center">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full max-h-[62vh] object-contain no-select"
+            />
+          </div>
+
+          {/* Metadata & EXIF Sheet */}
+          <div className="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+            <div className="md:col-span-7">
+              <div className="flex items-baseline gap-3 mb-2">
+                <h3 className="text-xl font-semibold text-zinc-100">{project.title}</h3>
+                <span className="font-mono text-xs text-zinc-500">[{project.year}]</span>
+              </div>
+              <p className="text-sm text-zinc-400 leading-relaxed">
+                {project.description}
+              </p>
             </div>
-            <p className="text-blue-400 mb-4 flex items-center">
-              <Camera size={16} className="mr-2" />
-              {project.category}
-            </p>
-            <p className="text-slate-300 leading-relaxed">
-              {project.description || "A visual narrative captured with high precision, exploring unique perspectives and fine details."}
-            </p>
+
             {(project.camera || project.lens || project.iso) && (
-              <div className="mt-6 pt-6 border-t border-slate-800/50">
-                <div className="flex flex-wrap gap-3">
-                  {project.camera && <span className="px-4 py-2 bg-slate-800/50 text-blue-300 rounded-lg text-sm border border-slate-700/50">{project.camera}</span>}
-                  {project.lens && <span className="px-4 py-2 bg-slate-800/50 text-blue-300 rounded-lg text-sm border border-slate-700/50">{project.lens}</span>}
-                  {project.iso && <span className="px-4 py-2 bg-slate-800/50 text-blue-300 rounded-lg text-sm border border-slate-700/50">{project.iso}</span>}
+              <div className="md:col-span-5 p-4 bg-zinc-950 border border-white/[0.08] font-mono text-xs space-y-2">
+                <div className="text-[10px] text-zinc-500 uppercase tracking-wider pb-1.5 border-b border-white/[0.06]">
+                  EXIF TELEMETRY
                 </div>
+                {project.camera && (
+                  <div className="flex justify-between text-zinc-300">
+                    <span className="text-zinc-500">BODY</span>
+                    <span>{project.camera}</span>
+                  </div>
+                )}
+                {project.lens && (
+                  <div className="flex justify-between text-zinc-300">
+                    <span className="text-zinc-500">OPTICS</span>
+                    <span>{project.lens}</span>
+                  </div>
+                )}
+                {project.iso && (
+                  <div className="flex justify-between text-zinc-300">
+                    <span className="text-zinc-500">SENSITIVITY</span>
+                    <span>{project.iso}</span>
+                  </div>
+                )}
               </div>
             )}
           </div>

@@ -2,124 +2,107 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft, Github, Heart, ShieldCheck, Mail, Globe } from 'lucide-react';
+import { ArrowLeft, Mail, ArrowUpRight } from 'lucide-react';
 
 export default function EdukaFooter() {
   return (
-    <footer className="bg-slate-950 border-t border-slate-900 pt-16 pb-12 relative overflow-hidden">
+    <footer className="bg-[#09090b] pt-16 pb-12 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-slate-900">
-          {/* Brand Info */}
-          <div className="md:col-span-2 space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/[0.08]">
+          {/* Brand Column */}
+          <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-cyan-400 p-0.5 shadow-lg shadow-blue-500/20">
-                <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center overflow-hidden">
-                  <Image
-                    src="/img/edukabyte/Logo.png"
-                    alt="EdukaByte"
-                    width={28}
-                    height={28}
-                    className="object-contain"
-                  />
-                </div>
+              <div className="w-8 h-8 bg-zinc-900 border border-white/[0.12] p-1.5 flex items-center justify-center">
+                <Image
+                  src="/img/edukabyte/Logo.png"
+                  alt="EdukaByte"
+                  width={22}
+                  height={22}
+                  className="object-contain"
+                />
               </div>
-              <div className="flex flex-col">
-                <span className="font-extrabold text-xl text-white tracking-tight">EdukaByte</span>
-                <span className="text-xs text-sky-400 font-mono">EdTech Sovereign Ecosystem</span>
+              <div className="flex items-baseline gap-2">
+                <span className="font-semibold text-base text-zinc-100">EdukaByte</span>
+                <span className="font-mono text-[10px] text-zinc-500">// SCHOOL SUITE</span>
               </div>
             </div>
 
-            <p className="text-xs text-slate-400 max-w-md leading-relaxed">
-              Solusi digitalisasi terintegrasi untuk sekolah Indonesia (SMP, SMA, SMK):
-              CBT mandiri berkeandalan tinggi, platform literasi virtual gratis NISN,
-              dan pengarsipan tata usaha akreditasi sekolah terenkripsi kecerdasan buatan.
+            <p className="text-xs text-zinc-400 max-w-sm leading-relaxed">
+              Infrastruktur digital mandiri untuk sekolah Indonesia (SMP, SMA, SMK): CBT
+              offline-first, perpustakaan digital NISN, dan pengarsipan dokumen akreditasi sekolah
+              terenkripsi.
             </p>
 
-            <div className="flex items-center gap-3 pt-2">
+            <div className="pt-2 flex flex-wrap items-center gap-3">
+              <a
+                href="mailto:rovsgame771@gmail.com?subject=Pemesanan%20Produk%20EdukaByte"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-zinc-100 hover:bg-white text-zinc-950 font-mono text-xs font-medium transition-colors"
+              >
+                <Mail className="w-3.5 h-3.5" />
+                <span>rovsgame771@gmail.com</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+
               <Link
                 href="/"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-white/[0.1] font-mono text-xs transition-colors"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
-                Kembali ke Web Profile
+                <span>Web Profile</span>
               </Link>
             </div>
           </div>
 
-          {/* Products Column */}
-          <div>
-            <h4 className="text-xs font-mono font-bold text-white uppercase tracking-wider mb-4">
-              Produk Ekosistem
-            </h4>
-            <ul className="space-y-2.5 text-xs text-slate-400 font-medium">
+          {/* Systems Column */}
+          <div className="md:col-span-4">
+            <div className="font-mono text-[11px] text-zinc-500 uppercase tracking-wider mb-4">
+              MODUL EKOSISTEM
+            </div>
+            <ul className="space-y-2.5 text-xs text-zinc-400 font-mono">
               <li>
-                <a href="#produk" className="hover:text-sky-400 transition-colors">
-                  CBT EdukaByte (Zero Data Loss)
+                <a href="#produk" className="hover:text-zinc-100 transition-colors">
+                  SYS.01 // CBT EdukaByte (Ujian &amp; AI OMR)
                 </a>
               </li>
               <li>
-                <a href="#produk" className="hover:text-emerald-400 transition-colors">
-                  PustakaKita (Perpustakaan Digital)
+                <a href="#produk" className="hover:text-zinc-100 transition-colors">
+                  SYS.02 // PustakaKita (Perpustakaan NISN)
                 </a>
               </li>
               <li>
-                <a href="#produk" className="hover:text-indigo-400 transition-colors">
-                  DS Education (DMS Sekolah)
+                <a href="#produk" className="hover:text-zinc-100 transition-colors">
+                  SYS.03 // DS Education (Arsip Dokumen Sekolah)
                 </a>
               </li>
               <li>
-                <a href="#simulasi" className="hover:text-white transition-colors">
-                  Simulasi Interactive Motion
-                </a>
-              </li>
-              <li>
-                <a href="#kalkulator-hemat" className="hover:text-white transition-colors">
-                  Kalkulator Hemat Dana BOS
+                <a href="#pesan" className="hover:text-zinc-100 transition-colors">
+                  PROCUREMENT // Form Pemesanan Sekolah
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Standards & Compliance */}
-          <div>
-            <h4 className="text-xs font-mono font-bold text-white uppercase tracking-wider mb-4">
-              Kedaulatan & Keamanan
-            </h4>
-            <ul className="space-y-2 text-xs text-slate-400">
-              <li className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>UU Perlindungan Data Pribadi (UU PDP)</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>8 Standar Nasional Pendidikan (SNP)</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Arsitektur Docker Containerized</span>
-              </li>
+          {/* Compliance Column */}
+          <div className="md:col-span-3">
+            <div className="font-mono text-[11px] text-zinc-500 uppercase tracking-wider mb-4">
+              STANDAR &amp; LISENSI
+            </div>
+            <ul className="space-y-2 text-xs text-zinc-400 font-mono">
+              <li>UU No. 27/2022 (UU PDP)</li>
+              <li>8 Standar Nasional Pendidikan</li>
+              <li>On-Premise Docker &amp; Edge</li>
+              <li>Lisensi Tahunan &amp; Perpetual</li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-zinc-500">
           <div>
-            © {new Date().getFullYear()} EdukaByte. Dikembangkan oleh{' '}
-            <strong className="text-slate-300">KingRovs</strong> untuk kemajuan pendidikan Indonesia.
+            © {new Date().getFullYear()} EDUKABYTE — ENGINEERED BY KINGROVS (RIZKY BUDIARTO)
           </div>
-          <div className="flex items-center gap-2 font-mono text-[11px]">
-            <span>Next.js 16</span>
-            <span>•</span>
-            <span>Tailwind CSS v4</span>
-            <span>•</span>
-            <span>Framer Motion</span>
-            <span>•</span>
-            <span className="text-sky-400">pnpm Managed</span>
-          </div>
+          <div>ORDER &amp; SUPPORT: ROVSGAME771@GMAIL.COM</div>
         </div>
       </div>
     </footer>
   );
 }
-

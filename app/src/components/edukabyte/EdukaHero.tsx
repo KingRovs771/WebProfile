@@ -1,341 +1,368 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
-  ShieldCheck,
-  Zap,
+  ArrowDownRight,
+  ArrowUpRight,
+  Mail,
   Server,
-  BookOpen,
-  FileCheck2,
-  Cpu,
-  ArrowRight,
-  PlayCircle,
-  Sparkles,
-  Wifi,
-  Database,
-  Lock,
+  Terminal,
+  Activity,
+  CheckCircle2,
 } from 'lucide-react';
 
 interface EdukaHeroProps {
   onExploreClick?: () => void;
   onSimulationClick?: () => void;
+  onOrderClick?: (productId?: string) => void;
 }
 
-export default function EdukaHero({ onExploreClick, onSimulationClick }: EdukaHeroProps) {
+const NODE_TELEMETRY = {
+  cbt: {
+    code: 'SYS.01 // CBT-ENGINE',
+    name: 'CBT EdukaByte',
+    role: 'Offline-First Computer Based Test & AI OMR Grading',
+    protocol: 'WebSocket LAN + IndexedDB Auto-Sync',
+    latency: '1.2ms Local LAN',
+    throughput: '600+ Concurrent Exam Clients',
+    storage: 'PostgreSQL 16 + Redis Pub/Sub',
+    status: 'ZERO DATA LOSS VERIFIED',
+  },
+  pustaka: {
+    code: 'SYS.02 // PUSTAKA-KITA',
+    name: 'PustakaKita',
+    role: 'Single-Tenant Digital School Library & PWA Reader',
+    protocol: '10-Digit NISN + PIN Auth (Zero Email)',
+    latency: 'Edge Cached / Offline PWA',
+    throughput: '1,200+ Kemendikbud BSE Titles',
+    storage: 'Cloudflare R2 + Neon Serverless PG',
+    status: 'RP 0 / MONTH INFRASTRUCTURE',
+  },
+  dms: {
+    code: 'SYS.03 // DS-EDUCATION',
+    name: 'DS Education',
+    role: 'School Document Archiving & 8-Standard SNP Accreditation',
+    protocol: 'PyTorch NeuralKeyGen + SHA-256 Seal',
+    latency: '< 1.8s Semantic Index Query',
+    throughput: 'AES-256 Encrypted Object Vault',
+    storage: 'MinIO S3 On-Premise + FastAPI',
+    status: 'TAMPER-PROOF ARCHIVE READY',
+  },
+};
+
+export default function EdukaHero({
+  onExploreClick,
+  onSimulationClick,
+  onOrderClick,
+}: EdukaHeroProps) {
   const [activeNode, setActiveNode] = useState<'cbt' | 'pustaka' | 'dms'>('cbt');
+  const currentTelemetry = NODE_TELEMETRY[activeNode];
 
   return (
-    <section className="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
-      {/* Background Ambient Glows & Grid Pattern */}
-      <div className="absolute inset-0 pointer-events-none -z-10">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-gradient-to-tr from-blue-600/20 via-sky-500/15 to-emerald-500/10 blur-[130px] rounded-full" />
-        <div className="absolute top-2/3 right-10 w-[450px] h-[350px] bg-indigo-600/15 blur-[120px] rounded-full" />
-        <div className="absolute top-1/3 left-10 w-[400px] h-[300px] bg-teal-500/10 blur-[110px] rounded-full" />
-
-        {/* Subtle Isometric Grid Mesh */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)`,
-            backgroundSize: '36px 36px',
-          }}
-        />
-      </div>
-
+    <section className="relative pt-10 pb-20 md:pt-16 md:pb-24 border-b border-white/[0.08]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Top Floating Badge */}
-        <div className="flex justify-center mb-6">
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-slate-900/90 border border-slate-700/80 shadow-xl shadow-blue-950/40"
-          >
-            <span className="flex h-2.5 w-2.5 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-sky-500" />
+        {/* Top Architectural Metadata Bar */}
+        <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-white/[0.08] font-mono text-[11px] text-zinc-500">
+          <div className="flex items-center gap-3">
+            <span className="inline-flex items-center gap-1.5 text-zinc-200">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              EDUKABYTE SOVEREIGN SUITE
             </span>
-            <span className="text-xs font-semibold text-slate-200">
-              Transformasi Digital Mandiri Sekolah Indonesia
-            </span>
-            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-cyan-300 border border-cyan-500/30">
-              100% Data Sovereignty
-            </span>
-          </motion.div>
+            <span className="hidden sm:inline">//</span>
+            <span className="hidden sm:inline">SMP · SMA · SMK INDONESIA</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <span>ARCHITECTURE: SELF-HOSTED &amp; EDGE</span>
+            <span className="text-zinc-300">[UU PDP COMPLIANT]</span>
+          </div>
         </div>
 
-        {/* Main Headline */}
-        <div className="text-center max-w-4xl mx-auto mb-10">
-          <motion.h1
-            initial={{ y: 25, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15]"
-          >
-            Ekosistem Pendidikan Digital{' '}
-            <span className="bg-gradient-to-r from-blue-400 via-sky-300 to-emerald-300 bg-clip-text text-transparent">
-              Cerdas, Mandiri, & Bebas Ketergantungan
-            </span>
-          </motion.h1>
+        {/* Main 12-Column Swiss Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-white/[0.08]">
+          {/* Left 7 Columns: Editorial Headline & Direct Actions */}
+          <div className="lg:col-span-7 py-10 sm:py-14 lg:pr-12 lg:border-r border-white/[0.08] flex flex-col justify-between">
+            <div>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="font-mono text-xs text-zinc-400 uppercase tracking-wider mb-5"
+              >
+                INFRASTRUKTUR DIGITAL SEKOLAH MANDIRI
+              </motion.div>
 
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-6 text-base sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-normal"
-          >
-            Tiga pilar solusi terintegrasi untuk SMP, SMA, dan SMK di Indonesia:
-            ujian digital berarsitektur <strong className="text-sky-300 font-semibold">Zero Data Loss</strong>,
-            literasi siswa gratis via <strong className="text-emerald-300 font-semibold">NISN Single-Sign-On</strong>,
-            serta pengarsipan akreditasi terenkripsi <strong className="text-indigo-300 font-semibold">PyTorch NeuralKey</strong>.
-          </motion.p>
+              <motion.h1
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: 0.05 }}
+                className="text-4xl sm:text-5xl lg:text-[58px] font-semibold tracking-[-0.035em] text-zinc-100 leading-[1.06]"
+              >
+                Kedaulatan penuh atas ujian, literasi, dan arsip dokumen sekolah.
+              </motion.h1>
 
-          {/* Action CTAs */}
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-8 flex flex-wrap items-center justify-center gap-4"
-          >
-            <button
-              onClick={onExploreClick}
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-400 text-white font-bold text-sm shadow-xl shadow-blue-500/25 hover:shadow-cyan-400/40 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer group"
-            >
-              Jelajahi 3 Produk EdukaByte
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+              <motion.p
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: 0.1 }}
+                className="mt-6 text-base sm:text-lg text-zinc-400 leading-relaxed max-w-2xl"
+              >
+                Tidak perlu lagi khawatir ujian macet saat internet sekolah putus, tagihan langganan
+                cloud bulanan yang menguras dana BOS, atau berkas akreditasi yang tercecer.
+                EdukaByte menyatukan{' '}
+                <strong className="text-zinc-200 font-medium">CBT EdukaByte</strong>,{' '}
+                <strong className="text-zinc-200 font-medium">PustakaKita</strong>, dan{' '}
+                <strong className="text-zinc-200 font-medium">DS Education</strong> dalam satu
+                arsitektur yang dikendalikan penuh oleh sekolah.
+              </motion.p>
 
-            <button
-              onClick={onSimulationClick}
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-slate-900/90 hover:bg-slate-800 text-slate-200 hover:text-white font-bold text-sm border border-slate-700/80 shadow-xl hover:border-slate-600 transition-all cursor-pointer"
-            >
-              <PlayCircle className="w-4 h-4 text-sky-400" />
-              Uji Coba Simulasi Interaktif
-            </button>
-          </motion.div>
+              {/* Primary CTA Strip */}
+              <motion.div
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: 0.15 }}
+                className="mt-9 flex flex-wrap items-center gap-3"
+              >
+                <button
+                  onClick={() => onOrderClick?.()}
+                  className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-zinc-100 hover:bg-white text-zinc-950 font-medium text-xs sm:text-sm transition-all cursor-pointer group"
+                >
+                  <Mail className="w-4 h-4" />
+                  <span>Pesan Produk EdukaByte</span>
+                  <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </button>
+
+                <button
+                  onClick={onExploreClick}
+                  className="inline-flex items-center gap-2 px-5 py-3.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 font-medium text-xs sm:text-sm border border-white/[0.1] transition-colors cursor-pointer"
+                >
+                  <span>Katalog 3 Produk</span>
+                  <ArrowDownRight className="w-4 h-4 text-zinc-400" />
+                </button>
+
+                <button
+                  onClick={onSimulationClick}
+                  className="inline-flex items-center gap-2 px-4 py-3.5 text-zinc-400 hover:text-zinc-100 font-mono text-xs transition-colors cursor-pointer"
+                >
+                  <Terminal className="w-3.5 h-3.5" />
+                  <span>Uji Simulasi Sistem</span>
+                </button>
+              </motion.div>
+            </div>
+
+            {/* Direct Procurement Note */}
+            <div className="mt-12 pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-xs text-zinc-500">
+              <span>PENGADAAN &amp; DEMO RESMI:</span>
+              <a
+                href="mailto:rovsgame771@gmail.com?subject=Pengadaan%20Ekosistem%20EdukaByte%20Sekolah"
+                className="text-zinc-200 hover:text-white underline decoration-zinc-700 underline-offset-4"
+              >
+                rovsgame771@gmail.com ↗
+              </a>
+            </div>
+          </div>
+
+          {/* Right 5 Columns: Interactive Graphic Motion Architecture Schematic */}
+          <div className="lg:col-span-5 py-10 lg:py-14 lg:pl-10 flex flex-col justify-between">
+            <div className="border border-white/[0.1] bg-[#0c0c0f] p-5 sm:p-6 relative">
+              {/* Corner Crosshairs */}
+              <span className="absolute -top-2 -left-2 font-mono text-xs text-zinc-600 select-none">+</span>
+              <span className="absolute -top-2 -right-2 font-mono text-xs text-zinc-600 select-none">+</span>
+              <span className="absolute -bottom-2 -left-2 font-mono text-xs text-zinc-600 select-none">+</span>
+              <span className="absolute -bottom-2 -right-2 font-mono text-xs text-zinc-600 select-none">+</span>
+
+              {/* Schematic Header */}
+              <div className="flex items-center justify-between pb-3.5 mb-5 border-b border-white/[0.08] font-mono text-[11px]">
+                <span className="text-zinc-300 flex items-center gap-2">
+                  <Activity className="w-3.5 h-3.5 text-emerald-400" />
+                  TOPOLOGY SCHEMATIC
+                </span>
+                <span className="text-zinc-500">INTERACTIVE NODE</span>
+              </div>
+
+              {/* Root School Server Node */}
+              <div className="p-3.5 bg-zinc-950 border border-white/[0.1] flex items-center justify-between mb-2">
+                <div className="flex items-center gap-3">
+                  <Server className="w-4 h-4 text-zinc-300" />
+                  <div>
+                    <div className="font-mono text-xs font-semibold text-zinc-100">
+                      INFRASTRUKTUR INTI SEKOLAH
+                    </div>
+                    <div className="font-mono text-[10px] text-zinc-500">
+                      Docker LAN Host · Edge CDN · MinIO S3 Vault
+                    </div>
+                  </div>
+                </div>
+                <span className="font-mono text-[10px] px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  ONLINE
+                </span>
+              </div>
+
+              {/* Animated SVG Bus Lines Connecting Root to 3 Modules */}
+              <div className="relative h-10 w-full">
+                <svg
+                  className="w-full h-full"
+                  viewBox="0 0 360 40"
+                  fill="none"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M180 0 V18 M60 18 H300 M60 18 V40 M180 18 V40 M300 18 V40"
+                    stroke="rgba(255,255,255,0.14)"
+                    strokeWidth="1.5"
+                  />
+                  <motion.path
+                    d={
+                      activeNode === 'cbt'
+                        ? 'M180 0 V40'
+                        : activeNode === 'pustaka'
+                        ? 'M180 0 V18 H60 V40'
+                        : 'M180 0 V18 H300 V40'
+                    }
+                    stroke="#f4f4f5"
+                    strokeWidth="1.5"
+                    strokeDasharray="4 4"
+                    animate={{ strokeDashoffset: [24, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.2, ease: 'linear' }}
+                  />
+                </svg>
+              </div>
+
+              {/* 3 Selectable Product Nodes */}
+              <div className="grid grid-cols-3 gap-2 mb-5">
+                {[
+                  { id: 'pustaka', code: 'SYS.02', label: 'PustakaKita', sub: 'NISN Library' },
+                  { id: 'cbt', code: 'SYS.01', label: 'CBT Engine', sub: 'Zero Data Loss' },
+                  { id: 'dms', code: 'SYS.03', label: 'DS Education', sub: 'Archive & SNP' },
+                ].map((node) => {
+                  const isSelected = activeNode === node.id;
+                  return (
+                    <button
+                      key={node.id}
+                      onClick={() => setActiveNode(node.id as any)}
+                      className={`p-3 text-left border transition-all cursor-pointer ${
+                        isSelected
+                          ? 'bg-zinc-100 text-zinc-950 border-zinc-100'
+                          : 'bg-zinc-950/90 text-zinc-300 border-white/[0.08] hover:border-white/[0.2]'
+                      }`}
+                    >
+                      <div
+                        className={`font-mono text-[9px] ${
+                          isSelected ? 'text-zinc-600' : 'text-zinc-500'
+                        }`}
+                      >
+                        {node.code}
+                      </div>
+                      <div className="font-semibold text-xs mt-0.5 truncate">{node.label}</div>
+                      <div
+                        className={`font-mono text-[10px] mt-0.5 truncate ${
+                          isSelected ? 'text-zinc-700' : 'text-zinc-500'
+                        }`}
+                      >
+                        {node.sub}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Live Telemetry Readout Console for Selected Node */}
+              <motion.div
+                key={activeNode}
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2 }}
+                className="p-4 bg-zinc-950 border border-white/[0.08] font-mono text-xs space-y-2.5"
+              >
+                <div className="flex items-center justify-between pb-2 border-b border-white/[0.06]">
+                  <span className="text-zinc-100 font-semibold">{currentTelemetry.name}</span>
+                  <span className="text-[10px] text-emerald-400 flex items-center gap-1">
+                    <CheckCircle2 className="w-3 h-3" />
+                    {currentTelemetry.status}
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2 text-[11px]">
+                  <div>
+                    <span className="text-zinc-500 block text-[10px]">PROTOCOL</span>
+                    <span className="text-zinc-300">{currentTelemetry.protocol}</span>
+                  </div>
+                  <div>
+                    <span className="text-zinc-500 block text-[10px]">CAPACITY</span>
+                    <span className="text-zinc-300">{currentTelemetry.throughput}</span>
+                  </div>
+                  <div>
+                    <span className="text-zinc-500 block text-[10px]">STORAGE ENGINE</span>
+                    <span className="text-zinc-300">{currentTelemetry.storage}</span>
+                  </div>
+                  <div>
+                    <span className="text-zinc-500 block text-[10px]">LATENCY / MODE</span>
+                    <span className="text-zinc-300">{currentTelemetry.latency}</span>
+                  </div>
+                </div>
+
+                <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between">
+                  <span className="text-[10px] text-zinc-500">{currentTelemetry.code}</span>
+                  <button
+                    onClick={() =>
+                      onOrderClick?.(
+                        activeNode === 'cbt'
+                          ? 'cbt-edukabyte'
+                          : activeNode === 'pustaka'
+                          ? 'pustaka-kita'
+                          : 'ds-education'
+                      )
+                    }
+                    className="text-[11px] text-zinc-100 hover:underline flex items-center gap-1 cursor-pointer"
+                  >
+                    <span>Pesan {currentTelemetry.name}</span>
+                    <ArrowUpRight className="w-3 h-3" />
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+          </div>
         </div>
 
-        {/* Graphic Motion Interactive Ecosystem Showcase */}
-        <motion.div
-          initial={{ y: 40, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.35 }}
-          className="relative max-w-5xl mx-auto mt-12 bg-slate-900/70 border border-slate-800/80 rounded-3xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl shadow-blue-950/40 overflow-hidden"
-        >
-          {/* Subtle Cybernetic Grid Motion Header */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-800">
-            <div className="flex items-center gap-3">
-              <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-xs font-mono uppercase tracking-wider text-slate-300">
-                Live Ecosystem Architecture • Synchronized LAN & Edge
-              </span>
+        {/* Bottom 4-Column Architectural Telemetry Strip */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 border-x border-b border-white/[0.08] divide-y sm:divide-y-0 sm:divide-x divide-white/[0.08] bg-[#0b0b0e]">
+          {[
+            {
+              index: 'M.01',
+              value: '99.98%',
+              label: 'Reliabilitas Ujian Lokal',
+              sub: 'Zero Data Loss dengan IndexedDB Sync',
+            },
+            {
+              index: 'M.02',
+              value: '< 0.8s',
+              label: 'Koreksi LJK AI OMR',
+              sub: 'Pemindaian lembar jawaban via kamera',
+            },
+            {
+              index: 'M.03',
+              value: 'Rp 0 / bln',
+              label: 'Biaya Server PustakaKita',
+              sub: 'Dioptimalkan di atas Cloudflare R2 & Neon',
+            },
+            {
+              index: 'M.04',
+              value: '8 Standar',
+              label: 'Repositori Akreditasi SNP',
+              sub: 'Pengarsipan dokumen sekolah bersegel SHA-256',
+            },
+          ].map((stat) => (
+            <div key={stat.index} className="p-6 sm:p-7">
+              <div className="font-mono text-[10px] text-zinc-600 mb-2">[{stat.index}]</div>
+              <div className="font-mono text-2xl sm:text-3xl font-semibold text-zinc-100 tracking-tight">
+                {stat.value}
+              </div>
+              <div className="text-xs font-medium text-zinc-300 mt-1.5">{stat.label}</div>
+              <div className="text-[11px] text-zinc-500 mt-0.5">{stat.sub}</div>
             </div>
-
-            {/* Product Switch Tabs in Graphic Motion */}
-            <div className="inline-flex items-center p-1 bg-slate-950/80 rounded-xl border border-slate-800">
-              <button
-                onClick={() => setActiveNode('cbt')}
-                className={`text-xs font-semibold px-3 py-1.5 rounded-lg transition-all ${
-                  activeNode === 'cbt'
-                    ? 'bg-blue-600 text-white shadow-md'
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                CBT EdukaByte
-              </button>
-              <button
-                onClick={() => setActiveNode('pustaka')}
-                className={`text-xs font-semibold px-3 py-1.5 rounded-lg transition-all ${
-                  activeNode === 'pustaka'
-                    ? 'bg-emerald-600 text-white shadow-md'
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                PustakaKita
-              </button>
-              <button
-                onClick={() => setActiveNode('dms')}
-                className={`text-xs font-semibold px-3 py-1.5 rounded-lg transition-all ${
-                  activeNode === 'dms'
-                    ? 'bg-indigo-600 text-white shadow-md'
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                DS Education
-              </button>
-            </div>
-          </div>
-
-          {/* Graphic Motion Interactive Canvas Visualization */}
-          <div className="relative py-8 min-h-[360px] flex flex-col justify-center">
-            {/* Pulsing Data Flow Lines (SVG Animation) */}
-            <svg
-              className="absolute inset-0 w-full h-full pointer-events-none opacity-40"
-              viewBox="0 0 800 360"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <linearGradient id="streamGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.1" />
-                  <stop offset="50%" stopColor="#38bdf8" stopOpacity="0.8" />
-                  <stop offset="100%" stopColor="#10b981" stopOpacity="0.1" />
-                </linearGradient>
-                <linearGradient id="streamGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#10b981" stopOpacity="0.1" />
-                  <stop offset="50%" stopColor="#6366f1" stopOpacity="0.8" />
-                  <stop offset="100%" stopColor="#ec4899" stopOpacity="0.1" />
-                </linearGradient>
-              </defs>
-
-              {/* Connecting Wave lines */}
-              <motion.path
-                d="M 120 180 C 250 80, 550 80, 680 180"
-                stroke="url(#streamGrad1)"
-                strokeWidth="2.5"
-                strokeDasharray="6 6"
-                animate={{ strokeDashoffset: [0, -48] }}
-                transition={{ repeat: Infinity, duration: 2.5, ease: 'linear' }}
-              />
-              <motion.path
-                d="M 120 180 C 250 280, 550 280, 680 180"
-                stroke="url(#streamGrad2)"
-                strokeWidth="2.5"
-                strokeDasharray="6 6"
-                animate={{ strokeDashoffset: [-48, 0] }}
-                transition={{ repeat: Infinity, duration: 2.5, ease: 'linear' }}
-              />
-              <line
-                x1="120"
-                y1="180"
-                x2="680"
-                y2="180"
-                stroke="#1e293b"
-                strokeWidth="1.5"
-              />
-            </svg>
-
-            {/* Interactive Nodes in Graphic Motion */}
-            <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-              {/* Node 1: PustakaKita */}
-              <motion.div
-                whileHover={{ scale: 1.03 }}
-                onClick={() => setActiveNode('pustaka')}
-                className={`p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                  activeNode === 'pustaka'
-                    ? 'bg-emerald-950/40 border-emerald-500/60 shadow-xl shadow-emerald-500/20'
-                    : 'bg-slate-950/60 border-slate-800 hover:border-emerald-500/30'
-                }`}
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-                    <BookOpen className="w-6 h-6" />
-                  </div>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300">
-                    PWA Offline
-                  </span>
-                </div>
-                <h4 className="font-bold text-white text-base">PustakaKita</h4>
-                <p className="text-xs text-slate-400 mt-1">
-                  Literasi siswa gratis tanpa email, single-sign-on NISN + PIN, analitik membaca per-anak.
-                </p>
-                <div className="mt-3 flex items-center gap-2 text-[11px] text-emerald-400 font-mono">
-                  <Wifi className="w-3 h-3" />
-                  <span>Sync Cloudflare R2 • Netlify</span>
-                </div>
-              </motion.div>
-
-              {/* Center Node 2: CBT EdukaByte (Flagship Hub) */}
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                onClick={() => setActiveNode('cbt')}
-                className={`p-6 rounded-2xl border transition-all duration-300 cursor-pointer relative overflow-hidden ${
-                  activeNode === 'cbt'
-                    ? 'bg-blue-950/50 border-sky-500/70 shadow-2xl shadow-sky-500/30 ring-2 ring-sky-500/30'
-                    : 'bg-slate-950/80 border-slate-800 hover:border-sky-500/40'
-                }`}
-              >
-                <div className="absolute top-0 right-0 px-3 py-1 bg-gradient-to-l from-blue-600 to-sky-500 text-[10px] font-extrabold uppercase tracking-wider text-white rounded-bl-xl">
-                  Flagship Core
-                </div>
-
-                <div className="flex items-center justify-between mb-3">
-                  <div className="p-3 rounded-xl bg-blue-500/15 text-sky-400 border border-blue-500/30">
-                    <Cpu className="w-7 h-7" />
-                  </div>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-500/20 text-sky-300">
-                    LAN Docker Self-Hosted
-                  </span>
-                </div>
-                <h4 className="font-extrabold text-white text-lg">CBT EdukaByte</h4>
-                <p className="text-xs text-slate-300 mt-1">
-                  Ujian offline tanpa takut data hilang, AI OMR koreksi lembar kertas instan, zero third-party leak.
-                </p>
-                <div className="mt-4 flex items-center justify-between pt-3 border-t border-slate-800 text-[11px] font-mono text-sky-400">
-                  <span className="flex items-center gap-1.5">
-                    <Database className="w-3.5 h-3.5" />
-                    Server Lokal Sekolah
-                  </span>
-                  <span className="font-bold bg-sky-500/10 px-2 py-0.5 rounded text-sky-300">
-                    99.98% Uptime
-                  </span>
-                </div>
-              </motion.div>
-
-              {/* Node 3: DS Education */}
-              <motion.div
-                whileHover={{ scale: 1.03 }}
-                onClick={() => setActiveNode('dms')}
-                className={`p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                  activeNode === 'dms'
-                    ? 'bg-indigo-950/40 border-indigo-500/60 shadow-xl shadow-indigo-500/20'
-                    : 'bg-slate-950/60 border-slate-800 hover:border-indigo-500/30'
-                }`}
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/30">
-                    <FileCheck2 className="w-6 h-6" />
-                  </div>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300">
-                    PyTorch ML Sealed
-                  </span>
-                </div>
-                <h4 className="font-bold text-white text-base">DS Education</h4>
-                <p className="text-xs text-slate-400 mt-1">
-                  Pengarsipan 8 Standar Akreditasi, segel kriptografi NeuralKeyGen, MinIO AES-256 storage.
-                </p>
-                <div className="mt-3 flex items-center gap-2 text-[11px] text-indigo-400 font-mono">
-                  <Lock className="w-3 h-3" />
-                  <span>SHA-256 Verified • MinIO</span>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* Quick Stats Bar in Bottom */}
-          <div className="mt-4 pt-6 border-t border-slate-800/80 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-            <div className="p-3 rounded-xl bg-slate-950/40 border border-slate-800/50">
-              <div className="text-xl sm:text-2xl font-black text-white">99.98%</div>
-              <div className="text-[11px] text-slate-400 font-medium">Nilai Zero Data Loss</div>
-            </div>
-            <div className="p-3 rounded-xl bg-slate-950/40 border border-slate-800/50">
-              <div className="text-xl sm:text-2xl font-black text-sky-400">&lt; 0.8s</div>
-              <div className="text-[11px] text-slate-400 font-medium">Kecepatan AI OMR Scan</div>
-            </div>
-            <div className="p-3 rounded-xl bg-slate-950/40 border border-slate-800/50">
-              <div className="text-xl sm:text-2xl font-black text-emerald-400">Rp 0</div>
-              <div className="text-[11px] text-slate-400 font-medium">Infrastruktur PustakaKita</div>
-            </div>
-            <div className="p-3 rounded-xl bg-slate-950/40 border border-slate-800/50">
-              <div className="text-xl sm:text-2xl font-black text-indigo-400">8 Standar</div>
-              <div className="text-[11px] text-slate-400 font-medium">Akreditasi SNP Otomatis</div>
-            </div>
-          </div>
-        </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
-

@@ -22,14 +22,14 @@ export default function Home() {
   // Scroll spy
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY + 120;
+      const scrollY = window.scrollY + 160;
 
       if (contactRef.current && scrollY >= contactRef.current.offsetTop) {
         setActiveSection('contact');
-      } else if (projectsRef.current && scrollY >= projectsRef.current.offsetTop) {
-        setActiveSection('projects');
       } else if (photographyRef.current && scrollY >= photographyRef.current.offsetTop) {
         setActiveSection('photography');
+      } else if (projectsRef.current && scrollY >= projectsRef.current.offsetTop) {
+        setActiveSection('projects');
       } else {
         setActiveSection('home');
       }
@@ -56,23 +56,20 @@ export default function Home() {
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Block Ctrl+S, Ctrl+P, Ctrl+U
-      if (e.ctrlKey && (e.key === 's' || e.key === 'p' || e.key === 'u' || e.key === 'S' || e.key === 'P' || e.key === 'U')) {
+      if (e.ctrlKey && ['s', 'p', 'u', 'S', 'P', 'U'].includes(e.key)) {
         e.preventDefault();
       }
-      // Block F12 (DevTools)
       if (e.key === 'F12') {
         e.preventDefault();
       }
-      // Block Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (Inspect elements)
-      if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C' || e.key === 'i' || e.key === 'j' || e.key === 'c')) {
+      if (e.ctrlKey && e.shiftKey && ['I', 'J', 'C', 'i', 'j', 'c'].includes(e.key)) {
         e.preventDefault();
       }
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
       if (e.key === 'PrintScreen') {
-        navigator.clipboard.writeText(''); // Clear clipboard if print screen was pressed
+        navigator.clipboard.writeText('');
       }
     };
 
@@ -94,18 +91,22 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 overflow-x-hidden font-sans">
+    <div className="min-h-screen bg-[#09090b] text-zinc-100 overflow-x-hidden font-sans selection:bg-zinc-100 selection:text-zinc-950">
       <BackgroundParticles />
 
-      <Navbar activeSection={activeSection} scrollToSection={scrollToSection} refs={{ photographyRef, projectsRef, contactRef }} />
+      <Navbar
+        activeSection={activeSection}
+        scrollToSection={scrollToSection}
+        refs={{ photographyRef, projectsRef, contactRef }}
+      />
 
       <HeroSection scrollToRef={scrollToSection} refs={{ projectsRef, contactRef }} />
 
       <EdukaByteSpotlight />
 
-      <PhotographySection sectionRef={photographyRef} onSelectProject={setSelectedProject} />
-
       <ProjectsSection sectionRef={projectsRef} />
+
+      <PhotographySection sectionRef={photographyRef} onSelectProject={setSelectedProject} />
 
       <ContactSection sectionRef={contactRef} />
 

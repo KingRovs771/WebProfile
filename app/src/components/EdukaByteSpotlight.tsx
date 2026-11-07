@@ -3,125 +3,147 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import {
-  Sparkles,
-  ArrowRight,
-  ShieldCheck,
-  Zap,
-  BookOpen,
-  FileCheck2,
-  Cpu,
-  Layers,
-  ChevronRight,
-} from 'lucide-react';
+import { ArrowUpRight, Mail, Terminal, Check } from 'lucide-react';
 import { EDUKABYTE_PRODUCTS } from '../library/edukabyteData';
 
 export default function EdukaByteSpotlight() {
   return (
-    <section className="py-24 relative overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900/60 to-slate-950">
-      {/* Ambient Glows */}
-      <div className="absolute inset-0 pointer-events-none -z-10">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-blue-600/15 blur-[140px] rounded-full" />
-      </div>
-
+    <section className="py-20 relative border-b border-white/[0.08]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Spotlight Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        {/* Editorial Section Header */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-10 border-b border-white/[0.08]">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-blue-500/15 to-cyan-500/15 border border-cyan-500/30 text-cyan-300 text-xs font-bold uppercase tracking-wider mb-3">
-              <Sparkles className="w-3.5 h-3.5" />
-              Flagship Innovation Suite
+            <div className="font-mono text-[11px] text-zinc-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              <span>[FLAGSHIP PRODUCT SUITE // EDUKABYTE]</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              EdukaByte — Ekosistem Kedaulatan Digital Sekolah
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.03em] text-zinc-100 leading-[1.1]">
+              On-premise infrastructure for Indonesian schools.
             </h2>
-            <p className="mt-2 text-slate-400 max-w-2xl text-sm sm:text-base">
-              Rangkaian platform pendidikan mandiri (self-hosted) yang membebaskan sekolah Indonesia dari
-              ketergantungan internet luar dan biaya langganan cloud pihak ketiga.
+            <p className="mt-4 text-zinc-400 max-w-2xl text-sm sm:text-base leading-relaxed">
+              Ekosistem perangkat lunak mandiri untuk SMP, SMA, dan SMK—mencakup ujian CBT lokal
+              anti-hilang data, perpustakaan digital berbasis NISN, serta pengarsipan dokumen
+              akreditasi sekolah terenkripsi.
             </p>
           </div>
 
-          <Link
-            href="/edukabyte"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-400 text-white font-bold text-xs shadow-xl shadow-blue-500/20 hover:shadow-cyan-400/40 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer w-fit"
-          >
-            Buka Halaman Khusus EdukaByte
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
+            <a
+              href="mailto:rovsgame771@gmail.com?subject=Pemesanan%20%26%20Konsultasi%20Ekosistem%20EdukaByte&body=Halo%20Tim%20EdukaByte%2C%0A%0ASaya%20ingin%20berkonsultasi%20mengenai%20pemesanan%20produk%20EdukaByte%20untuk%20sekolah%20kami%3A%0A-%20Nama%20Sekolah%3A%20%0A-%20Produk%20yang%20Diminati%20(CBT%20EdukaByte%20%2F%20PustakaKita%20%2F%20DS%20Education)%3A%20%0A-%20Jumlah%20Siswa%3A%20%0A-%20Kontak%20WhatsApp%2FTelepon%3A%20"
+              className="inline-flex items-center gap-2 px-4 py-2.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-white/[0.12] text-xs font-medium transition-colors"
+            >
+              <Mail className="w-3.5 h-3.5 text-zinc-400" />
+              <span>Pesan via Email</span>
+            </a>
+
+            <Link
+              href="/edukabyte"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-zinc-100 hover:bg-white text-zinc-950 font-medium text-xs transition-all group"
+            >
+              <span>Buka Halaman EdukaByte</span>
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </Link>
+          </div>
         </div>
 
-        {/* 3 Product Cards Spotlight */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* 3-Column Architectural Bento Matrix */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 border-x border-b border-white/[0.08] divide-y lg:divide-y-0 lg:divide-x divide-white/[0.08] bg-[#0b0b0e]/80">
           {EDUKABYTE_PRODUCTS.map((prod, idx) => {
-            const isBlue = prod.accentColor === 'blue';
-            const isEmerald = prod.accentColor === 'emerald';
-            const isIndigo = prod.accentColor === 'indigo';
+            const sysCode = `SYS.0${idx + 1}`;
+            const mailSubject = encodeURIComponent(`Pemesanan Produk ${prod.name} — EdukaByte`);
+            const mailBody = encodeURIComponent(
+              `Halo Tim EdukaByte (rovsgame771@gmail.com),\n\nKami tertarik untuk memesan / menjadwalkan demo produk ${prod.name} (${prod.subtitle}).\n\nDetail Instansi:\n- Nama Sekolah: \n- Penanggung Jawab / Jabatan: \n- Estimasi Jumlah Siswa: \n- Nomor WhatsApp Aktif: \n\nTerima kasih.`
+            );
 
             return (
               <motion.div
                 key={prod.id}
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.3 }}
-                className="relative bg-slate-900/90 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between hover:border-slate-700 shadow-xl group overflow-hidden"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.08 }}
+                className="p-7 sm:p-8 flex flex-col justify-between hover:bg-white/[0.015] transition-colors group relative"
               >
-                {/* Glow bar at top of card */}
-                <div
-                  className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${prod.gradient} opacity-80 group-hover:opacity-100 transition-opacity`}
-                />
-
                 <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 rounded-2xl bg-slate-950 border border-slate-800 p-2 flex items-center justify-center overflow-hidden">
-                      <Image
-                        src={prod.logo}
-                        alt={prod.name}
-                        width={36}
-                        height={36}
-                        className="object-contain"
-                      />
-                    </div>
-                    <span
-                      className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
-                        isBlue
-                          ? 'bg-blue-500/10 text-sky-300 border-blue-500/30'
-                          : isEmerald
-                          ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30'
-                          : 'bg-indigo-500/10 text-indigo-300 border-indigo-500/30'
-                      }`}
-                    >
-                      {prod.badge.split('|')[0]}
+                  {/* Top System Bar */}
+                  <div className="flex items-center justify-between font-mono text-[11px] text-zinc-500 mb-6">
+                    <span>[{sysCode} // {prod.category.toUpperCase()}]</span>
+                    <span className="text-zinc-400 border border-white/[0.08] px-2 py-0.5 bg-zinc-900/60">
+                      {prod.badge.split('|')[0].trim()}
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold text-white group-hover:text-sky-300 transition-colors">
-                    {prod.name}
-                  </h3>
-                  <p className="text-xs text-slate-300 mt-1 font-medium">{prod.subtitle}</p>
+                  {/* Product Brand Header */}
+                  <div className="flex items-center gap-3.5 mb-4">
+                    <div className="w-11 h-11 bg-zinc-950 border border-white/[0.1] p-2 flex items-center justify-center shrink-0">
+                      <Image
+                        src={prod.logo}
+                        alt={prod.name}
+                        width={32}
+                        height={32}
+                        className="object-contain"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-zinc-100 tracking-tight group-hover:text-white">
+                        {prod.name}
+                      </h3>
+                      <p className="text-xs text-zinc-500 font-mono">{prod.role}</p>
+                    </div>
+                  </div>
 
-                  <p className="text-xs text-slate-400 mt-3 line-clamp-3 leading-relaxed">
+                  {/* Description */}
+                  <p className="text-sm text-zinc-400 leading-relaxed mb-6">
                     {prod.description}
                   </p>
 
-                  {/* Highlights Mini Stats */}
-                  <div className="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-slate-800/80">
-                    {prod.heroStats.slice(0, 2).map((st, sIdx) => (
-                      <div key={sIdx} className="bg-slate-950/60 p-2 rounded-xl text-center">
-                        <div className="text-xs font-extrabold text-white">{st.value}</div>
-                        <div className="text-[10px] text-slate-400">{st.label}</div>
+                  {/* Key Engineering Specs */}
+                  <div className="space-y-2 mb-6 pt-5 border-t border-white/[0.06]">
+                    {prod.keyFeatures.slice(0, 3).map((feat, fIdx) => (
+                      <div key={fIdx} className="flex items-start gap-2.5 text-xs text-zinc-300">
+                        <Check className="w-3.5 h-3.5 text-zinc-500 shrink-0 mt-0.5" />
+                        <span>
+                          <strong className="font-medium text-zinc-200">{feat.title}</strong> —{' '}
+                          <span className="text-zinc-400">{feat.description}</span>
+                        </span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between">
-                  <span className="text-[11px] font-mono text-slate-400">{prod.role}</span>
-                  <Link
-                    href={`/edukabyte#produk`}
-                    className="inline-flex items-center gap-1 text-xs font-bold text-sky-400 hover:text-sky-300"
-                  >
-                    Detail & Demo
-                    <ChevronRight className="w-3.5 h-3.5" />
-                  </Link>
+                <div>
+                  {/* Telemetry Numbers */}
+                  <div className="grid grid-cols-3 gap-2 py-3 px-3.5 bg-zinc-950/90 border border-white/[0.06] mb-6">
+                    {prod.heroStats.map((st, sIdx) => (
+                      <div key={sIdx}>
+                        <div className="font-mono text-xs font-semibold text-zinc-100">
+                          {st.value}
+                        </div>
+                        <div className="font-mono text-[10px] text-zinc-500 truncate mt-0.5">
+                          {st.label}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Action Links */}
+                  <div className="flex items-center justify-between pt-4 border-t border-white/[0.06]">
+                    <a
+                      href={`mailto:rovsgame771@gmail.com?subject=${mailSubject}&body=${mailBody}`}
+                      className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white underline decoration-zinc-700 underline-offset-4 hover:decoration-zinc-200 transition-colors"
+                    >
+                      <Mail className="w-3.5 h-3.5" />
+                      <span>Pesan Produk</span>
+                    </a>
+
+                    <Link
+                      href={`/edukabyte#produk`}
+                      className="inline-flex items-center gap-1 text-xs font-medium text-zinc-400 hover:text-zinc-100 transition-colors"
+                    >
+                      <span>Spesifikasi &amp; Demo</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
                 </div>
               </motion.div>
             );
@@ -131,4 +153,3 @@ export default function EdukaByteSpotlight() {
     </section>
   );
 }
-
